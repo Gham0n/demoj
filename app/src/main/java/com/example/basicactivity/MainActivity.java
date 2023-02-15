@@ -110,9 +110,9 @@ public class MainActivity extends AppCompatActivity {
     public void onClickVega(View view) throws IOException, InterruptedException {
         System.out.println("Vega button pushed at " + printHeure());
 
-        //TextView tmp = (TextView) findViewById(R.id.textVLog);
-        //String res = (String) tmp.getText();
-        //tmp.setText(res +"\nVega button pushed at "  + printHeure() + "\n\n" + ping.ping("10.3.141.1"));
+        TextView tmp = (TextView) findViewById(R.id.textVLog);
+        String res = (String) tmp.getText();
+        tmp.setText(res +"\nVega button pushed at "  + printHeure() + "\n\n" + ping.ping("10.3.141.1"));
     }
 
     public void onClickDeneb(View view) throws IOException, InterruptedException {
@@ -127,37 +127,5 @@ public class MainActivity extends AppCompatActivity {
         TextView tmp = (TextView) findViewById(R.id.textVLog);
         String res = (String) tmp.getText();
         tmp.setText(res +"\nVega button pushed at "  + printHeure() + "\n\n"  +ping.ping("10.3.141.226"));
-    }
-
-    public void midoriPushed(View view)
-    {
-        Button navF = (Button) findViewById(R.id.navFirefox);
-        Button navM = (Button) findViewById(R.id.navMidori);
-
-        System.out.println("Midori pushed at " + printHeure());
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-            findViewById(R.id.navFirefox).setBackgroundTintList(ColorStateList.valueOf(ContextCompat.getColor(this, R.color.white)));
-            findViewById(R.id.navMidori).setBackgroundTintList(ColorStateList.valueOf(ContextCompat.getColor(this, R.color.red)));
-            navF.setTextColor(ContextCompat.getColor(this, R.color.red));
-            navM.setTextColor(ContextCompat.getColor(this, R.color.white));
-            findViewById(R.id.navFirefox).setEnabled(true);
-            findViewById(R.id.navMidori).setEnabled(false);
-        }
-    }
-
-    public void firefoxPushed(View view)
-    {
-        Button navF = (Button) findViewById(R.id.navFirefox);
-        Button navM = (Button) findViewById(R.id.navMidori);
-
-        System.out.println("Firefox pushed at " + printHeure());
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-            findViewById(R.id.navFirefox).setBackgroundTintList(ColorStateList.valueOf(ContextCompat.getColor(this, R.color.red)));
-            findViewById(R.id.navMidori).setBackgroundTintList(ColorStateList.valueOf(ContextCompat.getColor(this, R.color.white)));
-            navF.setTextColor(ContextCompat.getColor(this, R.color.white));
-            navM.setTextColor(ContextCompat.getColor(this, R.color.red));
-            findViewById(R.id.navFirefox).setEnabled(false);
-            findViewById(R.id.navMidori).setEnabled(true);
-        }
     }
 }

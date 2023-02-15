@@ -61,7 +61,6 @@
                         android:layout_height="75dp"
                         android:layout_marginTop="10dp"
                         android:background="@drawable/arrondir_gauche"
-                        android:onClick="midoriPushed"
                         android:text="Midori"
                         app:backgroundTint="@color/red" />
 
@@ -71,7 +70,6 @@
                         android:layout_height="75dp"
                         android:layout_marginTop="10dp"
                         android:background="@drawable/arrondir"
-                        android:onClick="firefoxPushed"
                         android:text="Firefox"
                         android:textColor="@color/red"
                         app:backgroundTint="@color/white" />

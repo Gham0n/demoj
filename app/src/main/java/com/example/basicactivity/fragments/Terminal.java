@@ -14,6 +14,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.CompoundButton;
 import android.widget.Spinner;
 import android.widget.Switch;
@@ -32,6 +33,8 @@ public class Terminal extends Fragment {
     TextView textSlider;
     Slider slider;
     Spinner dropDownMenu;
+    Button firefox;
+    Button midori;
 
     @SuppressLint("MissingInflatedId")
     @Override
@@ -55,7 +58,11 @@ public class Terminal extends Fragment {
         ArrayAdapter<String> adapter = new ArrayAdapter<String>(view.getContext(), android.R.layout.simple_spinner_dropdown_item, items);
         dropDownMenu.setAdapter(adapter);
 
-        // Inflate the layout for this fragment
+        // Buttons - navigator selection
+        firefox = (Button) view.findViewById(R.id.navFirefox);
+        midori = (Button) view.findViewById(R.id.navMidori);
+        setButtons();
+
         return view;
     }
 
@@ -82,6 +89,43 @@ public class Terminal extends Fragment {
                 } else {
                     System.out.println("The toggle is disabled");
                     // TODO add actions
+                }
+            }
+        });
+    }
+
+    public void setButtons() {
+        midori.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                System.out.println("Midori pushed");
+                firefox.setEnabled(true);
+                midori.setEnabled(false);
+
+                firefox.setTextColor(ContextCompat.getColor(view.getContext(), R.color.red));
+                midori.setTextColor(ContextCompat.getColor(view.getContext(), R.color.white));
+
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+                    firefox.setBackgroundTintList(ColorStateList.valueOf(ContextCompat.getColor(view.getContext(), R.color.white)));
+                    midori.setBackgroundTintList(ColorStateList.valueOf(ContextCompat.getColor(view.getContext(), R.color.red)));
+                }
+            }
+        });
+
+        firefox.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                System.out.println("Firefox pushed");
+
+                firefox.setEnabled(false);
+                midori.setEnabled(true);
+
+                firefox.setTextColor(ContextCompat.getColor(view.getContext(), R.color.white));
+                midori.setTextColor(ContextCompat.getColor(view.getContext(), R.color.red));
+
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+                    firefox.setBackgroundTintList(ColorStateList.valueOf(ContextCompat.getColor(view.getContext(), R.color.red)));
+                    midori.setBackgroundTintList(ColorStateList.valueOf(ContextCompat.getColor(view.getContext(), R.color.white)));
                 }
             }
         });

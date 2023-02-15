@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".fragments.Server">
-
+<!--on essaye de push -->
     <Button
         android:id="@+id/pingDeneb"
         android:layout_width="wrap_content"

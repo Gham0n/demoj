@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".fragments.Network">
+
+    <Button
+        android:id="@+id/pingVega"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="10dp"
+        android:onClick="onClickVega"
+        android:text="ping Vega"
+        app:backgroundTint="@color/blue" />
+    ²
+    <androidx.appcompat.widget.SwitchCompat
+        android:id="@+id/SwitchPaquet"
+        android:layout_below="@+id/pingVega"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="20dp"
+        android:layout_marginTop="20dp"
+        android:checked="false"
+        android:minHeight="60dp"
+        android:switchMinWidth="60dp"
+        android:text="Perte de paquets :"
+        android:textSize="10pt"
+        android:textColor="@color/blue"
+        android:background="@color/lightBlue"
+        app:theme="@style/NetworkStyle" />
+
+    <ScrollView
+        android:id="@+id/SCROLLER_ID"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/SwitchPaquet"
+        android:layout_marginBottom="15dp"
+        android:layout_marginTop="15dp"
+        android:fillViewport="true"
+        android:scrollbars="vertical">
+
+
+        <TextView
+            android:id="@+id/textVLog"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_below="@+id/pingVega"
+            android:background="@color/dark_grey"
+            android:hint="Log:"
+            android:textColor="@color/light_grey"
+            android:textColorHint="@color/light_grey" />
+
+    </ScrollView>
+
+</RelativeLayout>

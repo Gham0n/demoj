@@ -1,0 +1,179 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".fragments.Terminal">
+
+    <ScrollView
+        android:id="@+id/mainScroll"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_centerHorizontal="true"
+        android:fillViewport="true"
+        android:scrollbars="vertical">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_centerHorizontal="true"
+            android:orientation="vertical">
+
+            <Button
+                android:id="@+id/pingAltaïr"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="20dp"
+                android:onClick="onClickAltair"
+                android:text="ping Altaïr"
+                app:backgroundTint="@color/red" />
+
+            <LinearLayout
+                android:id="@+id/selectNav"
+                android:layout_width="match_parent"
+                android:layout_height="175dp"
+                android:layout_below="@+id/pingAltaïr"
+                android:layout_marginTop="20dp"
+                android:background="@color/lightRed"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/textnav"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/selectNav"
+                    android:padding="20dp"
+                    android:text="Navigateur :"
+                    android:textColor="@color/red"
+                    android:textSize="10pt" />
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_marginLeft="50dp"
+                    android:layout_marginRight="50dp">
+
+                    <Button
+                        android:id="@+id/navMidori"
+                        android:layout_width="150dp"
+                        android:layout_height="75dp"
+                        android:layout_marginTop="10dp"
+                        android:background="@drawable/arrondir_gauche"
+                        android:onClick="midoriPushed"
+                        android:text="Midori"
+                        app:backgroundTint="@color/red" />
+
+                    <Button
+                        android:id="@+id/navFirefox"
+                        android:layout_width="150dp"
+                        android:layout_height="75dp"
+                        android:layout_marginTop="10dp"
+                        android:background="@drawable/arrondir"
+                        android:onClick="firefoxPushed"
+                        android:text="Firefox"
+                        android:textColor="@color/red"
+                        app:backgroundTint="@color/white" />
+
+                </LinearLayout>
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/layoutSlider"
+                android:layout_width="match_parent"
+                android:layout_height="175dp"
+                android:layout_below="@+id/selectNav"
+                android:layout_marginTop="20dp"
+                android:background="@color/lightRed"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/TextRequêtes"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:padding="20dp"
+                    android:text="Nombre de requête par seconde :"
+                    android:textColor="@color/red"
+                    android:textSize="10pt" />
+
+                <com.google.android.material.slider.Slider
+                    android:id="@+id/SliderRequêtes"
+                    android:layout_width="match_parent"
+                    android:layout_height="60dp"
+                    android:padding="20dp"
+                    android:contentDescription="Nombre de requêtes par secondes."
+                    android:stepSize="1"
+                    android:value="0"
+                    android:valueFrom="0"
+                    android:valueTo="100"
+                    app:labelBehavior="visible"
+                    app:theme="@style/TerminalStyle"
+                    app:thumbColor="@color/red"
+                    app:tickVisible="false"
+                    app:trackColorActive="@color/red" />
+
+            </LinearLayout>
+
+            <androidx.appcompat.widget.SwitchCompat
+                android:id="@+id/SwitchEcran"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/layoutSlider"
+                android:layout_marginTop="20dp"
+                android:background="@color/lightRed"
+                android:checked="false"
+                android:minHeight="60dp"
+                android:padding="20dp"
+                android:switchMinWidth="60dp"
+                android:text="Ecran d'affichage :"
+                android:textColor="@color/red"
+                android:textSize="10pt"
+                app:theme="@style/TerminalStyle" />
+
+            <Spinner
+                android:id="@+id/SelectSite"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/SwitchEcran"
+                android:layout_marginTop="20dp"
+                android:background="@color/lightRed"
+                android:contentDescription="Select website"
+                android:minHeight="60dp"
+                android:padding="20dp"
+                android:spinnerMode="dropdown" />
+
+            <ScrollView
+                android:id="@+id/SCROLLER_ID"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_below="@id/SelectSite"
+                android:layout_marginTop="15dp"
+                android:layout_marginBottom="15dp"
+                android:fillViewport="true"
+                android:scrollbars="vertical">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="vertical">
+
+
+                    <TextView
+                        android:id="@+id/textVLog"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_below="@+id/pingGoogle"
+                        android:background="@color/dark_grey"
+                        android:hint="Log:\n\n\n\n"
+                        android:textColor="@color/light_grey"
+                        android:textColorHint="@color/light_grey" />
+                </LinearLayout>
+
+            </ScrollView>
+
+
+        </RelativeLayout>
+    </ScrollView>
+
+</RelativeLayout>

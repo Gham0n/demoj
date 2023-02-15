@@ -6,53 +6,109 @@
     android:layout_height="match_parent"
     tools:context=".fragments.Network">
 
-    <Button
-        android:id="@+id/pingVega"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="10dp"
-        android:onClick="onClickVega"
-        android:text="ping Vega"
-        app:backgroundTint="@color/blue" />
-    ²
-    <androidx.appcompat.widget.SwitchCompat
-        android:id="@+id/SwitchPaquet"
-        android:layout_below="@+id/pingVega"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:padding="20dp"
-        android:layout_marginTop="20dp"
-        android:checked="false"
-        android:minHeight="60dp"
-        android:switchMinWidth="60dp"
-        android:text="Perte de paquets :"
-        android:textSize="10pt"
-        android:textColor="@color/blue"
-        android:background="@color/lightBlue"
-        app:theme="@style/NetworkStyle" />
-
     <ScrollView
-        android:id="@+id/SCROLLER_ID"
+        android:id="@+id/mainScroll"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_below="@+id/SwitchPaquet"
-        android:layout_marginBottom="15dp"
-        android:layout_marginTop="15dp"
+        android:layout_centerHorizontal="true"
         android:fillViewport="true"
         android:scrollbars="vertical">
 
-
-        <TextView
-            android:id="@+id/textVLog"
+        <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_below="@+id/pingVega"
-            android:background="@color/dark_grey"
-            android:hint="Log:"
-            android:textColor="@color/light_grey"
-            android:textColorHint="@color/light_grey" />
+            android:layout_centerHorizontal="true"
+            android:orientation="vertical">
 
+
+
+            <Button
+                android:id="@+id/pingVega"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="10dp"
+                android:onClick="onClickVega"
+                android:text="ping Vega"
+                app:backgroundTint="@color/blue" />
+
+            <LinearLayout
+                android:id="@+id/layoutSlider"
+                android:layout_width="match_parent"
+                android:layout_height="175dp"
+                android:layout_below="@+id/pingVega"
+                android:layout_marginTop="20dp"
+                android:background="@color/lightBlue"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/TextRequêtes"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:padding="20dp"
+                    android:text="Temps de latence:"
+                    android:textColor="@color/blue"
+                    android:textSize="10pt" />
+
+                <com.google.android.material.slider.Slider
+                    android:id="@+id/SliderRequêtes"
+                    android:layout_width="match_parent"
+                    android:layout_height="60dp"
+                    android:padding="20dp"
+                    android:contentDescription="Temps de latence."
+                    android:stepSize="1"
+                    android:value="0"
+                    android:valueFrom="0"
+                    android:valueTo="100"
+                    app:labelBehavior="visible"
+                    app:theme="@style/TerminalStyle"
+                    app:thumbColor="@color/blue"
+                    app:tickVisible="false"
+                    app:trackColorActive="@color/blue" />
+
+            </LinearLayout>
+            ²
+
+            <androidx.appcompat.widget.SwitchCompat
+                android:id="@+id/SwitchPaquet"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/layoutSlider"
+                android:layout_marginTop="20dp"
+                android:background="@color/lightBlue"
+                android:checked="false"
+                android:minHeight="60dp"
+                android:padding="20dp"
+                android:switchMinWidth="60dp"
+                android:text="Perte de paquets :"
+                android:textColor="@color/blue"
+                android:textSize="10pt"
+                app:theme="@style/NetworkStyle" />
+
+            <ScrollView
+                android:id="@+id/SCROLLER_ID"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_below="@+id/SwitchPaquet"
+                android:layout_marginTop="15dp"
+                android:layout_marginBottom="15dp"
+                android:fillViewport="true"
+                android:scrollbars="vertical">
+
+
+                <TextView
+                    android:id="@+id/textVLog"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_below="@+id/pingVega"
+                    android:background="@color/dark_grey"
+                    android:hint="Log:"
+                    android:textColor="@color/light_grey"
+                    android:textColorHint="@color/light_grey" />
+
+            </ScrollView>
+
+        </RelativeLayout>
     </ScrollView>
 
 </RelativeLayout>

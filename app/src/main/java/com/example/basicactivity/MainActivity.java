@@ -131,16 +131,30 @@ public class MainActivity extends AppCompatActivity {
     public void onClickVegaConnect(View view) throws Exception {
         System.out.println("Connect button pushed at " + printHeure());
 
-        MyClient.run();
+        MyClient.launchClient();
+        TextView tmp = (TextView) findViewById(R.id.textVLog);
+        String res = (String) tmp.getText();
+        tmp.setText(res + "\nConnect button pushed at " + printHeure() + "\n");
 
     }
 
     public void onClickVegaSend(View view) throws IOException, InterruptedException {
         System.out.println("Send button pushed at " + printHeure());
 
+
+        TextView tmp = (TextView) findViewById(R.id.textVLog);
+        String res = (String) tmp.getText();
+        tmp.setText(res + "\nSend button pushed at " + printHeure() + "\n " + MyClient.setStr("Firefooooox"));
     }
+
+
     public void onClickVegaStop(View view) throws IOException, InterruptedException {
         System.out.println("Stop button pushed at " + printHeure());
+
+
+        TextView tmp = (TextView) findViewById(R.id.textVLog);
+        String res = (String) tmp.getText();
+        tmp.setText(res + "\nStop button pushed at " + printHeure() + "\n " + MyClient.setStr("stop") );
 
     }
 }

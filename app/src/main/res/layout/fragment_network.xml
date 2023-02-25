@@ -86,7 +86,7 @@
                 app:theme="@style/NetworkStyle" />
 
             <ScrollView
-                android:id="@+id/SCROLLER_ID"
+                android:id="@+id/SCROLLER_ID2"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_below="@+id/SwitchPaquet"
@@ -97,7 +97,7 @@
 
 
                 <TextView
-                    android:id="@+id/textVLog"
+                    android:id="@+id/textVLog2"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:layout_below="@+id/pingVega"
@@ -108,7 +108,12 @@
 
             </ScrollView>
 
+
+
+
+
         </RelativeLayout>
+
     </ScrollView>
 
 </RelativeLayout>

@@ -90,8 +90,7 @@ public class MainActivity extends AppCompatActivity {
         tabLayout.setTabTextColors(black, color);
     }
 
-    public String printHeure()
-    {
+    public static String printHeure() {
         Formatter format = new Formatter();
         Calendar gfg_calender = Calendar.getInstance();
         format = new Formatter();
@@ -119,13 +118,29 @@ public class MainActivity extends AppCompatActivity {
         System.out.println("Deneb button pushed at " + printHeure());
         TextView tmp = (TextView) findViewById(R.id.textVLog);
         String res = (String) tmp.getText();
-        tmp.setText(res +"\nDeneb button pushed at "  + printHeure() + "\n\n" + ping.ping("10.3.141.203"));
+        tmp.setText(res + "\nDeneb button pushed at " + printHeure() + "\n\n" + ping.ping("10.3.141.203"));
     }
 
     public void onClickAltair(View view) throws IOException, InterruptedException {
         System.out.println("Altaïr button pushed at " + printHeure());
         TextView tmp = (TextView) findViewById(R.id.textVLog);
         String res = (String) tmp.getText();
-        tmp.setText(res +"\nVega button pushed at "  + printHeure() + "\n\n"  +ping.ping("10.3.141.226"));
+        tmp.setText(res + "\nVega button pushed at " + printHeure() + "\n\n" + ping.ping("10.3.141.226"));
+    }
+
+    public void onClickVegaConnect(View view) throws Exception {
+        System.out.println("Connect button pushed at " + printHeure());
+
+        MyClient.run();
+
+    }
+
+    public void onClickVegaSend(View view) throws IOException, InterruptedException {
+        System.out.println("Send button pushed at " + printHeure());
+
+    }
+    public void onClickVegaStop(View view) throws IOException, InterruptedException {
+        System.out.println("Stop button pushed at " + printHeure());
+
     }
 }

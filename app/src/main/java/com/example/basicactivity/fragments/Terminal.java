@@ -13,6 +13,7 @@ import androidx.fragment.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.CompoundButton;
@@ -21,6 +22,7 @@ import android.widget.Switch;
 import android.widget.TextView;
 
 import com.example.basicactivity.MainActivity;
+import com.example.basicactivity.MyClient;
 import com.example.basicactivity.R;
 import com.google.android.material.slider.Slider;
 
@@ -35,6 +37,7 @@ public class Terminal extends Fragment {
     Spinner dropDownMenu;
     Button firefox;
     Button midori;
+    TextView textLog;
 
     @SuppressLint("MissingInflatedId")
     @Override
@@ -57,14 +60,21 @@ public class Terminal extends Fragment {
         String[] items = new String[]{"1 - CALCULATRICE", "2 - DEMOSTAR", "3 - STREAMING"};
         ArrayAdapter<String> adapter = new ArrayAdapter<String>(view.getContext(), android.R.layout.simple_spinner_dropdown_item, items);
         dropDownMenu.setAdapter(adapter);
+        setSpinner();
 
         // Buttons - navigator selection
         firefox = (Button) view.findViewById(R.id.navFirefox);
         midori = (Button) view.findViewById(R.id.navMidori);
         setButtons();
 
+        textLog = (TextView) view.findViewById(R.id.textVLog);
+
+
         return view;
     }
+
+
+
 
     public void setSlider() {
         textSlider.setTypeface(Typeface.DEFAULT_BOLD);
@@ -74,7 +84,9 @@ public class Terminal extends Fragment {
             }
             public void onStopTrackingTouch(Slider slider) {
                 System.out.println("The slider value is " + slider.getValue());
-                // TODO add actions
+                String str = Float.toString(slider.getValue());
+                String res = (String) textLog.getText();
+                textLog.setText(res + "\nSlider moved at " + MainActivity.printHeure() + "\n " + MyClient.setStr(str));
             }
         });
     }
@@ -85,10 +97,12 @@ public class Terminal extends Fragment {
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
                 if (isChecked) {
                     System.out.println("The toggle is enabled");
-                    // TODO add actions
+                    String res = (String) textLog.getText();
+                    textLog.setText(res + "\nToggle is enabled at " + MainActivity.printHeure() + "\n " + MyClient.setStr("Toggle enabled"));
                 } else {
                     System.out.println("The toggle is disabled");
-                    // TODO add actions
+                    String res = (String) textLog.getText();
+                    textLog.setText(res + "\nToggle is disabled at " + MainActivity.printHeure() + "\n " + MyClient.setStr("Toggle disabled"));
                 }
             }
         });
@@ -101,6 +115,9 @@ public class Terminal extends Fragment {
                 System.out.println("Midori pushed");
                 firefox.setEnabled(true);
                 midori.setEnabled(false);
+
+                String res = (String) textLog.getText();
+                textLog.setText(res + "\nMidori button pushed at " + MainActivity.printHeure() + "\n " + MyClient.setStr("Midori"));
 
                 firefox.setTextColor(ContextCompat.getColor(view.getContext(), R.color.red));
                 midori.setTextColor(ContextCompat.getColor(view.getContext(), R.color.white));
@@ -120,6 +137,9 @@ public class Terminal extends Fragment {
                 firefox.setEnabled(false);
                 midori.setEnabled(true);
 
+                String res = (String) textLog.getText();
+                textLog.setText(res + "\nMidori button pushed at " + MainActivity.printHeure() + "\n " + MyClient.setStr("Firefox"));
+
                 firefox.setTextColor(ContextCompat.getColor(view.getContext(), R.color.white));
                 midori.setTextColor(ContextCompat.getColor(view.getContext(), R.color.red));
 
@@ -130,6 +150,24 @@ public class Terminal extends Fragment {
             }
         });
     }
+
+    public void setSpinner(){
+
+        dropDownMenu.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+                System.out.println("Spinner selected");
+                String res = (String) textLog.getText();
+                textLog.setText(res + "\nSpinner is selected at " + MainActivity.printHeure() + "\n " + MyClient.setStr(String.valueOf(dropDownMenu.getSelectedItemPosition()+1)));
+            }
+
+            public void onNothingSelected(AdapterView<?> adapterView) {
+                System.out.println("Nothing is selected");
+            }
+        });
+
+
+    }
+
 
     public void sendRequest(View view) {
         /**

@@ -62,6 +62,7 @@
                         android:layout_marginTop="10dp"
                         android:background="@drawable/arrondir_gauche"
                         android:text="Midori"
+                        android:onClick="onClickMidori"
                         app:backgroundTint="@color/red" />
 
                     <Button
@@ -72,6 +73,7 @@
                         android:background="@drawable/arrondir"
                         android:text="Firefox"
                         android:textColor="@color/red"
+                        android:onClick="onClickFirefox"
                         app:backgroundTint="@color/white" />
 
                 </LinearLayout>

@@ -144,7 +144,7 @@ public class MainActivity extends AppCompatActivity {
 
         TextView tmp = (TextView) findViewById(R.id.textVLog);
         String res = (String) tmp.getText();
-        tmp.setText(res + "\nSend button pushed at " + printHeure() + "\n " + MyClient.setStr("Firefooooox"));
+        tmp.setText(res + "\nSend button pushed at " + printHeure() + "\n " + MyClient.setStr("Send message blabla"));
     }
 
 

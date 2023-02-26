@@ -86,7 +86,7 @@ public class Terminal extends Fragment {
                 System.out.println("The slider value is " + slider.getValue());
                 String str = Float.toString(slider.getValue());
                 String res = (String) textLog.getText();
-                textLog.setText(res + "\nSlider moved at " + MainActivity.printHeure() + "\n " + MyClient.setStr(str));
+                textLog.setText(res + "\nSlider moved at " + MainActivity.printHeure() + "\n " + MyClient.setStr("request " + str));
             }
         });
     }
@@ -98,11 +98,11 @@ public class Terminal extends Fragment {
                 if (isChecked) {
                     System.out.println("The toggle is enabled");
                     String res = (String) textLog.getText();
-                    textLog.setText(res + "\nToggle is enabled at " + MainActivity.printHeure() + "\n " + MyClient.setStr("Toggle enabled"));
+                    textLog.setText(res + "\nToggle is enabled at " + MainActivity.printHeure() + "\n " + MyClient.setStr("screen on"));
                 } else {
                     System.out.println("The toggle is disabled");
                     String res = (String) textLog.getText();
-                    textLog.setText(res + "\nToggle is disabled at " + MainActivity.printHeure() + "\n " + MyClient.setStr("Toggle disabled"));
+                    textLog.setText(res + "\nToggle is disabled at " + MainActivity.printHeure() + "\n " + MyClient.setStr("screen off"));
                 }
             }
         });
@@ -117,7 +117,7 @@ public class Terminal extends Fragment {
                 midori.setEnabled(false);
 
                 String res = (String) textLog.getText();
-                textLog.setText(res + "\nMidori button pushed at " + MainActivity.printHeure() + "\n " + MyClient.setStr("Midori"));
+                textLog.setText(res + "\nMidori button pushed at " + MainActivity.printHeure() + "\n " + MyClient.setStr("nav midori"));
 
                 firefox.setTextColor(ContextCompat.getColor(view.getContext(), R.color.red));
                 midori.setTextColor(ContextCompat.getColor(view.getContext(), R.color.white));
@@ -138,7 +138,7 @@ public class Terminal extends Fragment {
                 midori.setEnabled(true);
 
                 String res = (String) textLog.getText();
-                textLog.setText(res + "\nMidori button pushed at " + MainActivity.printHeure() + "\n " + MyClient.setStr("Firefox"));
+                textLog.setText(res + "\nMidori button pushed at " + MainActivity.printHeure() + "\n " + MyClient.setStr("nav firefox"));
 
                 firefox.setTextColor(ContextCompat.getColor(view.getContext(), R.color.white));
                 midori.setTextColor(ContextCompat.getColor(view.getContext(), R.color.red));
@@ -157,7 +157,7 @@ public class Terminal extends Fragment {
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
                 System.out.println("Spinner selected");
                 String res = (String) textLog.getText();
-                textLog.setText(res + "\nSpinner is selected at " + MainActivity.printHeure() + "\n " + MyClient.setStr(String.valueOf(dropDownMenu.getSelectedItemPosition()+1)));
+                textLog.setText(res + "\nSpinner is selected at " + MainActivity.printHeure() + "\n " + MyClient.setStr(String.valueOf("website " +dropDownMenu.getSelectedItemPosition()+1)));
             }
 
             public void onNothingSelected(AdapterView<?> adapterView) {

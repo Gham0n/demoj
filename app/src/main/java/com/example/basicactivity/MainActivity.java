@@ -29,6 +29,8 @@ public class MainActivity extends AppCompatActivity {
 
     View mainView;
 
+    static int site;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -47,7 +49,11 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onTabSelected(TabLayout.Tab tab) {
                 int position = tab.getPosition();
+                //pa.setSite(site);
+                //vp.setAdapter(pa);
+
                 vp.setCurrentItem(position);
+
                 setColors(position);
             }
 
@@ -88,6 +94,10 @@ public class MainActivity extends AppCompatActivity {
         mainView.setBackgroundColor(color);
         tabLayout.setSelectedTabIndicatorColor(color);
         tabLayout.setTabTextColors(black, color);
+    }
+
+    public static void setSite(int selectedSite) {
+        site = selectedSite;
     }
 
     public static String printHeure() {

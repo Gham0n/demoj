@@ -33,11 +33,14 @@ import java.util.Formatter;
 public class Terminal extends Fragment {
     SwitchCompat sw;
     TextView textSlider;
+    TextView textNav;
+    TextView textSites;
     Slider slider;
     Spinner dropDownMenu;
     Button firefox;
     Button midori;
     TextView textLog;
+    int site;
 
     @SuppressLint("MissingInflatedId")
     @Override
@@ -56,6 +59,7 @@ public class Terminal extends Fragment {
         setSlider();
 
         // Drop down menu pour la selection des sites
+        textSites = (TextView) view.findViewById(R.id.TextSites);
         dropDownMenu = view.findViewById(R.id.SelectSite);
         String[] items = new String[]{"1 - CALCULATRICE", "2 - DEMOSTAR", "3 - STREAMING"};
         ArrayAdapter<String> adapter = new ArrayAdapter<String>(view.getContext(), android.R.layout.simple_spinner_dropdown_item, items);
@@ -63,18 +67,15 @@ public class Terminal extends Fragment {
         setSpinner();
 
         // Buttons - navigator selection
+        textNav = (TextView) view.findViewById(R.id.textnav);
         firefox = (Button) view.findViewById(R.id.navFirefox);
         midori = (Button) view.findViewById(R.id.navMidori);
         setButtons();
 
         textLog = (TextView) view.findViewById(R.id.textVLog);
 
-
         return view;
     }
-
-
-
 
     public void setSlider() {
         textSlider.setTypeface(Typeface.DEFAULT_BOLD);
@@ -109,6 +110,7 @@ public class Terminal extends Fragment {
     }
 
     public void setButtons() {
+        textNav.setTypeface(Typeface.DEFAULT_BOLD);
         midori.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -152,50 +154,18 @@ public class Terminal extends Fragment {
     }
 
     public void setSpinner(){
-
+        textSites.setTypeface(Typeface.DEFAULT_BOLD);
         dropDownMenu.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
-                System.out.println("Spinner selected");
                 String res = (String) textLog.getText();
-                textLog.setText(res + "\nSpinner is selected at " + MainActivity.printHeure() + "\n " + MyClient.setStr(String.valueOf("website " +dropDownMenu.getSelectedItemPosition()+1)));
+                site = (dropDownMenu.getSelectedItemPosition()+1);
+                MainActivity.setSite(site);
+                textLog.setText(res + "\nSpinner is selected at " + MainActivity.printHeure() + "\n " + MyClient.setStr(String.valueOf("website " + site)));
             }
 
             public void onNothingSelected(AdapterView<?> adapterView) {
                 System.out.println("Nothing is selected");
             }
         });
-
-
     }
-
-
-    public void sendRequest(View view) {
-        /**
-        final TextView textView = (TextView) findViewById(R.id.text);
-
-        // Instantiate the RequestQueue.
-        RequestQueue queue = Volley.newRequestQueue(this);
-        String url = "http://176.128.224.183/";
-
-        // Request a string response from the provided URL.
-        StringRequest stringRequest = new StringRequest(Request.Method.GET, url,
-                new Response.Listener<String>() {
-                    @Override
-                    public void onResponse(String response) {
-                        // Display the first 500 characters of the response string.
-                        textView.setText("Response is: " + response.substring(0,500));
-                    }
-                }, new Response.ErrorListener() {
-            @Override
-            public void onErrorResponse(VolleyError error) {
-                textView.setText("That didn't work!");
-            }
-
-        });
-
-
-// Add the request to the RequestQueue.
-        queue.add(stringRequest);**/
-    }
-
 }

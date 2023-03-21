@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".fragments.Terminal">
+    tools:context=".fragments.Calculator">
 
     <ScrollView
         android:id="@+id/mainScroll"
@@ -21,22 +21,22 @@
             android:orientation="vertical">
 
             <Button
-                android:id="@+id/pingAltaïr"
+                android:id="@+id/pingDeneb"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_centerHorizontal="true"
-                android:layout_marginTop="20dp"
-                android:onClick="onClickAltair"
-                android:text="ping Altaïr"
-                app:backgroundTint="@color/red" />
+                android:layout_marginTop="10dp"
+                android:onClick="onClickDeneb"
+                android:text="ping Deneb"
+                app:backgroundTint="@color/green" />
 
             <LinearLayout
-                android:id="@+id/selectNav"
+                android:id="@+id/selectSource"
                 android:layout_width="match_parent"
                 android:layout_height="175dp"
-                android:layout_below="@+id/pingAltaïr"
+                android:layout_below="@+id/pingDeneb"
                 android:layout_marginTop="20dp"
-                android:background="@color/lightRed"
+                android:background="@color/lightGreen"
                 android:orientation="vertical">
 
                 <TextView
@@ -45,8 +45,8 @@
                     android:layout_height="wrap_content"
                     android:layout_below="@+id/selectNav"
                     android:padding="20dp"
-                    android:text="Navigateur :"
-                    android:textColor="@color/red"
+                    android:text="Calcul côté :"
+                    android:textColor="@color/green"
                     android:textSize="10pt" />
 
                 <LinearLayout
@@ -61,9 +61,8 @@
                         android:layout_height="75dp"
                         android:layout_marginTop="10dp"
                         android:background="@drawable/arrondir_gauche"
-                        android:text="Midori"
-                        android:onClick="onClickMidori"
-                        app:backgroundTint="@color/red" />
+                        android:text="Client"
+                        app:backgroundTint="@color/green" />
 
                     <Button
                         android:id="@+id/navFirefox"
@@ -71,11 +70,9 @@
                         android:layout_height="75dp"
                         android:layout_marginTop="10dp"
                         android:background="@drawable/arrondir"
-                        android:text="Firefox"
-                        android:textColor="@color/red"
-                        android:onClick="onClickFirefox"
+                        android:text="Serveur"
+                        android:textColor="@color/green"
                         app:backgroundTint="@color/white" />
-
                 </LinearLayout>
             </LinearLayout>
 
@@ -83,88 +80,42 @@
                 android:id="@+id/layoutSlider"
                 android:layout_width="match_parent"
                 android:layout_height="175dp"
-                android:layout_below="@+id/selectNav"
+                android:layout_below="@+id/selectSource"
                 android:layout_marginTop="20dp"
-                android:background="@color/lightRed"
+                android:background="@color/lightGreen"
                 android:orientation="vertical">
 
                 <TextView
-                    android:id="@+id/TextRequêtes"
+                    android:id="@+id/TextCalculs"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:padding="20dp"
-                    android:text="Nombre de requête par seconde :"
-                    android:textColor="@color/red"
+                    android:text="Nombre de calculs par seconde :"
+                    android:textColor="@color/green"
                     android:textSize="10pt" />
 
                 <com.google.android.material.slider.Slider
-                    android:id="@+id/SliderRequêtes"
+                    android:id="@+id/SliderCalculs"
                     android:layout_width="match_parent"
                     android:layout_height="60dp"
                     android:padding="20dp"
-                    android:contentDescription="Nombre de requêtes par secondes."
+                    android:contentDescription="Nombre de calculs par secondes."
                     android:stepSize="1"
                     android:value="0"
                     android:valueFrom="0"
                     android:valueTo="100"
                     app:labelBehavior="visible"
                     app:theme="@style/TerminalStyle"
-                    app:thumbColor="@color/red"
+                    app:thumbColor="@color/green"
                     app:tickVisible="false"
-                    app:trackColorActive="@color/red" />
-            </LinearLayout>
-
-            <androidx.appcompat.widget.SwitchCompat
-                android:id="@+id/SwitchEcran"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_below="@+id/layoutSlider"
-                android:layout_marginTop="20dp"
-                android:background="@color/lightRed"
-                android:checked="false"
-                android:minHeight="60dp"
-                android:padding="20dp"
-                android:switchMinWidth="60dp"
-                android:text="Ecran d'affichage :"
-                android:textColor="@color/red"
-                android:textSize="10pt"
-                app:theme="@style/TerminalStyle" />
-
-            <LinearLayout
-                android:id="@+id/layoutSites"
-                android:layout_width="match_parent"
-                android:layout_height="140dp"
-                android:layout_below="@+id/SwitchEcran"
-                android:layout_marginTop="20dp"
-                android:background="@color/lightRed"
-                android:orientation="vertical">
-
-                <TextView
-                    android:id="@+id/TextSites"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:paddingTop="20dp"
-                    android:paddingLeft="20dp"
-                    android:paddingRight="20dp"
-                    android:text="Sites :"
-                    android:textColor="@color/red"
-                    android:textSize="10pt" />
-
-                <Spinner
-                    android:id="@+id/SelectSite"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:contentDescription="Select website"
-                    android:minHeight="60dp"
-                    android:padding="20dp"
-                    android:spinnerMode="dropdown" />
+                    app:trackColorActive="@color/green" />
             </LinearLayout>
 
             <ScrollView
                 android:id="@+id/SCROLLER_ID"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:layout_below="@id/layoutSites"
+                android:layout_below="@id/layoutSlider"
                 android:layout_marginTop="15dp"
                 android:layout_marginBottom="15dp"
                 android:fillViewport="true"
@@ -187,7 +138,6 @@
                 </LinearLayout>
 
             </ScrollView>
-
 
         </RelativeLayout>
     </ScrollView>

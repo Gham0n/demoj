@@ -13,8 +13,8 @@ public class MyClient {
             @Override
             public void run() {
                 try  {
-                    Socket s=new Socket("10.0.2.2",3333); //localhost
-                    //Socket s=new Socket("10.3.141.1",3333);       //Vega
+                    //Socket s=new Socket("10.0.2.2",3333); //localhost
+                    Socket s=new Socket("10.3.141.1",3333);       //Vega
                     DataOutputStream dout=new DataOutputStream(s.getOutputStream());
 
 

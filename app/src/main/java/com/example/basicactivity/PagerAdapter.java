@@ -18,7 +18,7 @@ public class PagerAdapter extends FragmentStateAdapter {
     public Fragment createFragment(int index) {
         switch (index) {
             case 1:
-                return new Connect();
+                return new Network();
             case 2:
                 //switch (site) {
                 //    case 1:

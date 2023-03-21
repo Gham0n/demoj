@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/btn_conncect"
+        android:title="Connect" />
+
+
+
+    <item
+        android:id="@+id/btn_send"
+        android:title="Send blabla" />
+    <item
+        android:id="@+id/btn_quit"
+        android:title="Stop" />
+</menu>

@@ -7,13 +7,16 @@ import android.os.Bundle;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.util.Log;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
+import androidx.appcompat.widget.PopupMenu;
 import androidx.core.content.ContextCompat;
 import androidx.viewpager2.widget.ViewPager2;
 
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.tabs.TabLayout;
 
 import java.io.IOException;
@@ -73,6 +76,54 @@ public class MainActivity extends AppCompatActivity {
                 tabLayout.getTabAt(position).select();
             }
         });
+
+
+        /*********************Debut menu pop-up***********************/
+
+        // Créer une instance de PopupMenu
+        PopupMenu popup = new PopupMenu(this, findViewById(R.id.menuBurger));
+
+// Ajouter les boutons supplémentaires
+        popup.getMenuInflater().inflate(R.menu.popup_menu, popup.getMenu());
+
+
+        // Définir un écouteur de clic pour le FloatingActionButton
+        findViewById(R.id.menuBurger).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                // Afficher le PopupMenu
+                popup.show();
+            }
+        });
+// Définir un écouteur de clic pour les éléments de menu
+        popup.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
+            @Override
+            public boolean onMenuItemClick(MenuItem menuItem) {
+                // Vérifier si l'élément sélectionné est "Button 1"
+                if (menuItem.getItemId() == R.id.btn_conncect) {
+                    // Afficher le message de print
+                    System.out.println("Connect button pushed at " + printHeure());
+                    MyClient.launchClient();
+                    return true;
+                }
+                else  if (menuItem.getItemId() == R.id.btn_send) {
+                    // Afficher le message de print
+                    System.out.println("Send button pushed at " + printHeure());
+                    MyClient.setStr("Blabla Test");
+                    return true;
+                }
+                else  if (menuItem.getItemId() == R.id.btn_quit) {
+                    // Afficher le message de print
+                    System.out.println("Stop button pushed at " + printHeure());
+                    MyClient.setStr("stop");
+
+                    return true;
+                }
+                return false;
+            }
+        });
+        /**************Fin menu pop-up***********************/
+
     }
 
     public void setColors(int selectedTab) {
@@ -104,8 +155,7 @@ public class MainActivity extends AppCompatActivity {
         Formatter format = new Formatter();
         Calendar gfg_calender = Calendar.getInstance();
         format = new Formatter();
-        format.format("%tl:%tM", gfg_calender,
-                gfg_calender);
+        format.format("%tl:%tM", gfg_calender, gfg_calender);
 
         // Printing the current hour and minute
         return format.toString();
@@ -121,7 +171,7 @@ public class MainActivity extends AppCompatActivity {
 
         TextView tmp = (TextView) findViewById(R.id.textVLog);
         String res = (String) tmp.getText();
-        tmp.setText(res +"\nVega button pushed at "  + printHeure() + "\n\n" + ping.ping("10.3.141.1"));
+        tmp.setText(res + "\nVega button pushed at " + printHeure() + "\n\n" + ping.ping("10.3.141.1"));
     }
 
     public void onClickDeneb(View view) throws IOException, InterruptedException {
@@ -137,12 +187,12 @@ public class MainActivity extends AppCompatActivity {
         String res = (String) tmp.getText();
         tmp.setText(res + "\nVega button pushed at " + printHeure() + "\n\n" + ping.ping("10.3.141.226"));
     }
-
+/*
     public void onClickVegaConnect(View view) throws Exception {
         System.out.println("Connect button pushed at " + printHeure());
 
         MyClient.launchClient();
-        TextView tmp = (TextView) findViewById(R.id.textVLog);
+        TextView tmp = (TextView) findViewById(R.id.textVLog2);
         String res = (String) tmp.getText();
         tmp.setText(res + "\nConnect button pushed at " + printHeure() + "\n");
 
@@ -152,7 +202,7 @@ public class MainActivity extends AppCompatActivity {
         System.out.println("Send button pushed at " + printHeure());
 
 
-        TextView tmp = (TextView) findViewById(R.id.textVLog);
+        TextView tmp = (TextView) findViewById(R.id.textVLog2);
         String res = (String) tmp.getText();
         tmp.setText(res + "\nSend button pushed at " + printHeure() + "\n " + MyClient.setStr("Send message blabla"));
     }
@@ -162,9 +212,13 @@ public class MainActivity extends AppCompatActivity {
         System.out.println("Stop button pushed at " + printHeure());
 
 
-        TextView tmp = (TextView) findViewById(R.id.textVLog);
+        TextView tmp = (TextView) findViewById(R.id.textVLog2);
         String res = (String) tmp.getText();
-        tmp.setText(res + "\nStop button pushed at " + printHeure() + "\n " + MyClient.setStr("stop") );
+        tmp.setText(res + "\nStop button pushed at " + printHeure() + "\n " + MyClient.setStr("stop"));
 
-    }
+
+    }*/
+
+
+
 }

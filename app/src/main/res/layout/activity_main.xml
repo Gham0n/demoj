@@ -39,10 +39,29 @@
 
     </com.google.android.material.tabs.TabLayout>
 
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/menuBurger"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginEnd="40dp"
+        android:layout_marginBottom="40dp"
+        android:backgroundTint="@color/white"
+        android:src="@drawable/ic_menu_burger"
+        app:maxImageSize="45dp" />
+
+
+
+
     <androidx.viewpager2.widget.ViewPager2
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:id="@+id/view_pager"
         android:layout_below="@id/tab_layout"/>
+
+
+
 
 </RelativeLayout>

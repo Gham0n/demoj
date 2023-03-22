@@ -27,4 +27,11 @@
         <item name="android:textColor">@color/white</item>
     </style>
 
+    <style name="ServerStyle" parent="Theme.MainTheme">
+        <item name="colorControlActivated">@color/green</item>
+        <item name="backgroundTint">@color/green</item>
+        <item name="android:textColor">@color/white</item>
+    </style>
+
+
 </resources>

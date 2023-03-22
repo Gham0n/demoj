@@ -78,12 +78,12 @@ public class Calculator extends Fragment {
                 String res = (String) textLog.getText();
                 textLog.setText(res + "\nServer button pushed at " + MainActivity.printHeure() + "\n " + MyClient.setStr("nav midori"));
 
-                client.setTextColor(ContextCompat.getColor(view.getContext(), R.color.red));
+                client.setTextColor(ContextCompat.getColor(view.getContext(), R.color.green));
                 server.setTextColor(ContextCompat.getColor(view.getContext(), R.color.white));
 
                 if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
                     client.setBackgroundTintList(ColorStateList.valueOf(ContextCompat.getColor(view.getContext(), R.color.white)));
-                    server.setBackgroundTintList(ColorStateList.valueOf(ContextCompat.getColor(view.getContext(), R.color.red)));
+                    server.setBackgroundTintList(ColorStateList.valueOf(ContextCompat.getColor(view.getContext(), R.color.green)));
                 }
             }
         });
@@ -100,10 +100,10 @@ public class Calculator extends Fragment {
                 textLog.setText(res + "\nClient button pushed at " + MainActivity.printHeure() + "\n " + MyClient.setStr("nav firefox"));
 
                 client.setTextColor(ContextCompat.getColor(view.getContext(), R.color.white));
-                server.setTextColor(ContextCompat.getColor(view.getContext(), R.color.red));
+                server.setTextColor(ContextCompat.getColor(view.getContext(), R.color.green));
 
                 if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-                    client.setBackgroundTintList(ColorStateList.valueOf(ContextCompat.getColor(view.getContext(), R.color.red)));
+                    client.setBackgroundTintList(ColorStateList.valueOf(ContextCompat.getColor(view.getContext(), R.color.green)));
                     server.setBackgroundTintList(ColorStateList.valueOf(ContextCompat.getColor(view.getContext(), R.color.white)));
                 }
             }

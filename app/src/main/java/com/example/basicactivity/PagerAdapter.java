@@ -8,7 +8,6 @@ import androidx.viewpager2.adapter.FragmentStateAdapter;
 import com.example.basicactivity.fragments.*;
 
 public class PagerAdapter extends FragmentStateAdapter {
-    int site;
     public PagerAdapter(@NonNull FragmentActivity fragmentActivity) {
         super(fragmentActivity);
     }
@@ -20,12 +19,7 @@ public class PagerAdapter extends FragmentStateAdapter {
             case 1:
                 return new Network();
             case 2:
-                //switch (site) {
-                //    case 1:
-                        return new Calculator();
-                //    default:
-                //        return new Server();
-                //}
+                return new Server();
             default:
                 return new Terminal();
         }
@@ -36,7 +30,4 @@ public class PagerAdapter extends FragmentStateAdapter {
         return 3; // number of fragments (tabs)
     }
 
-    public void setSite(int selectedSite) {
-        site = selectedSite;
-    }
 }

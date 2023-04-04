@@ -52,9 +52,6 @@
         android:src="@drawable/ic_menu_burger"
         app:maxImageSize="45dp" />
 
-
-
-
     <androidx.viewpager2.widget.ViewPager2
         android:layout_width="match_parent"
         android:layout_height="match_parent"

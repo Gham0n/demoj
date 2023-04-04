@@ -24,6 +24,8 @@ import android.widget.TextView;
 import com.example.basicactivity.MainActivity;
 import com.example.basicactivity.MyClient;
 import com.example.basicactivity.R;
+import com.example.basicactivity.fragments.sitesPages.Calculator;
+import com.example.basicactivity.fragments.sitesPages.Demostar;
 import com.google.android.material.slider.Slider;
 
 import java.util.Calendar;
@@ -159,7 +161,10 @@ public class Terminal extends Fragment {
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
                 String res = (String) textLog.getText();
                 site = (dropDownMenu.getSelectedItemPosition()+1);
-                MainActivity.setSite(site);
+
+                // TODO set site
+                MainActivity.site(site);
+
                 textLog.setText(res + "\nSpinner is selected at " + MainActivity.printHeure() + "\n " + MyClient.setStr(String.valueOf("website " + site)));
             }
 

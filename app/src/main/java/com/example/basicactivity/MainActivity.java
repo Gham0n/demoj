@@ -1,38 +1,35 @@
 package com.example.basicactivity;
 
-import android.content.res.ColorStateList;
-import android.os.Build;
+import android.database.Observable;
 import android.os.Bundle;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.Button;
 import android.widget.TextView;
 
 import androidx.appcompat.widget.PopupMenu;
 import androidx.core.content.ContextCompat;
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
 import androidx.viewpager2.widget.ViewPager2;
 
-import com.google.android.material.floatingactionbutton.FloatingActionButton;
+import com.example.basicactivity.fragments.Server;
 import com.google.android.material.tabs.TabLayout;
 
 import java.io.IOException;
 import java.util.Formatter;
 import java.util.Calendar;
 
-
 public class MainActivity extends AppCompatActivity {
 
     TabLayout tabLayout;
     ViewPager2 vp;
     PagerAdapter pa;
+    static FragmentManager fm;
 
     View mainView;
-
-    static int site;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -45,6 +42,7 @@ public class MainActivity extends AppCompatActivity {
         tabLayout = findViewById(R.id.tab_layout);
         vp = findViewById(R.id.view_pager);
         pa = new PagerAdapter(this);
+        fm = this.getSupportFragmentManager();
 
         vp.setAdapter(pa);
 
@@ -52,8 +50,6 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onTabSelected(TabLayout.Tab tab) {
                 int position = tab.getPosition();
-                //pa.setSite(site);
-                //vp.setAdapter(pa);
 
                 vp.setCurrentItem(position);
 
@@ -83,7 +79,7 @@ public class MainActivity extends AppCompatActivity {
         // Créer une instance de PopupMenu
         PopupMenu popup = new PopupMenu(this, findViewById(R.id.menuBurger));
 
-// Ajouter les boutons supplémentaires
+        // Ajouter les boutons supplémentaires
         popup.getMenuInflater().inflate(R.menu.popup_menu, popup.getMenu());
 
 
@@ -95,7 +91,7 @@ public class MainActivity extends AppCompatActivity {
                 popup.show();
             }
         });
-// Définir un écouteur de clic pour les éléments de menu
+        // Définir un écouteur de clic pour les éléments de menu
         popup.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
             @Override
             public boolean onMenuItemClick(MenuItem menuItem) {
@@ -122,6 +118,7 @@ public class MainActivity extends AppCompatActivity {
                 return false;
             }
         });
+
         /**************Fin menu pop-up***********************/
 
     }
@@ -147,8 +144,13 @@ public class MainActivity extends AppCompatActivity {
         tabLayout.setTabTextColors(black, color);
     }
 
-    public static void setSite(int selectedSite) {
-        site = selectedSite;
+    public static void site(int site) {
+        for(Fragment fragment : fm.getFragments()) {
+            if(fragment instanceof Server) {
+                Server server = (Server) fragment;
+                server.setSite(site);
+            }
+        }
     }
 
     public static String printHeure() {
@@ -218,7 +220,5 @@ public class MainActivity extends AppCompatActivity {
 
 
     }*/
-
-
 
 }

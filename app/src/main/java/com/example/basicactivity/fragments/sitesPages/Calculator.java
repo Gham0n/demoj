@@ -1,4 +1,4 @@
-package com.example.basicactivity.fragments;
+package com.example.basicactivity.fragments.sitesPages;
 
 import android.content.res.ColorStateList;
 import android.graphics.Typeface;
@@ -42,8 +42,8 @@ public class Calculator extends Fragment {
 
         // Buttons - navigator selection
         textSource = (TextView) view.findViewById(R.id.textnav);
-        client = (Button) view.findViewById(R.id.navFirefox);
-        server = (Button) view.findViewById(R.id.navMidori);
+        client = (Button) view.findViewById(R.id.calcClient);
+        server = (Button) view.findViewById(R.id.calcServeur);
         setButtons();
 
         textLog = (TextView) view.findViewById(R.id.textVLog);

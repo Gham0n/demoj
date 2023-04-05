@@ -8,6 +8,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.appcompat.widget.PopupMenu;
 import androidx.core.content.ContextCompat;
@@ -100,6 +101,13 @@ public class MainActivity extends AppCompatActivity {
                     // Afficher le message de print
                     System.out.println("Connect button pushed at " + printHeure());
                     MyClient.launchClient();
+                    try {
+                        Thread.sleep(100);
+                    } catch (InterruptedException e) {
+                        e.printStackTrace();
+                    }
+                    if(MyClient.getIsConnected())Toast.makeText(MainActivity.this, "Connecté au serveur.", Toast.LENGTH_SHORT).show();
+                    else Toast.makeText(MainActivity.this, "Erreur. Le serveur n'est pas démarré.", Toast.LENGTH_SHORT).show();
                     return true;
                 }
                 else  if (menuItem.getItemId() == R.id.btn_send) {
@@ -112,6 +120,7 @@ public class MainActivity extends AppCompatActivity {
                     // Afficher le message de print
                     System.out.println("Stop button pushed at " + printHeure());
                     MyClient.setStr("stop");
+                    Toast.makeText(MainActivity.this, "Deconnexion.", Toast.LENGTH_SHORT).show();
 
                     return true;
                 }

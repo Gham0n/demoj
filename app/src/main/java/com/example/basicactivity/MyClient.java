@@ -5,6 +5,7 @@ public class MyClient {
 
     public static String str = "Empty";
     public static Boolean change= false;
+    public static Boolean isConnected =false;
 
     public static void launchClient(){
 
@@ -17,15 +18,20 @@ public class MyClient {
                     Socket s=new Socket("10.3.141.1",3333);       //Vega
                     DataOutputStream dout=new DataOutputStream(s.getOutputStream());
 
+                    System.out.println("Connected to server.");
+                    isConnected=true;
 
-
-                    while(!str.equals("stop")){
+                    while(true){
 
                         if(change) {
-
+                            System.out.println("str = " + str);
                             dout.writeUTF(str);
                             dout.flush();
-
+                            if(str == "stop"){
+                                isConnected=false;
+                                str="Empty";
+                                break;
+                            }
 
                             change = false;
                         }
@@ -34,7 +40,7 @@ public class MyClient {
                     dout.close();
                     s.close();
                 } catch (Exception e) {
-                    e.printStackTrace();
+                    System.out.println("Failed to connect to server.");
                 }
             }
         });
@@ -42,7 +48,13 @@ public class MyClient {
         thread.start();
 
     }
+    public static Boolean getIsConnected() {
+        return isConnected;
+    }
 
+    public static void setIsConnected(Boolean isConnected) {
+        MyClient.isConnected = isConnected;
+    }
 
     public static String getStr() {
         return str;

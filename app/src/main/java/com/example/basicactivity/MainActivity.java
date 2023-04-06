@@ -153,7 +153,7 @@ public class MainActivity extends AppCompatActivity {
         tabLayout.setTabTextColors(black, color);
     }
 
-    public static void site(int site) {
+    public static void setSite(int site) {
         for(Fragment fragment : fm.getFragments()) {
             if(fragment instanceof Server) {
                 Server server = (Server) fragment;

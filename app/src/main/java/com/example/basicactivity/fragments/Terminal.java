@@ -162,8 +162,7 @@ public class Terminal extends Fragment {
                 String res = (String) textLog.getText();
                 site = (dropDownMenu.getSelectedItemPosition()+1);
 
-                // TODO set site
-                MainActivity.site(site);
+                MainActivity.setSite(site);
 
                 textLog.setText(res + "\nSpinner is selected at " + MainActivity.printHeure() + "\n " + MyClient.setStr(String.valueOf("website " + site)));
             }

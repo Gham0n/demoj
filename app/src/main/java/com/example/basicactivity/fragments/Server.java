@@ -3,18 +3,13 @@ package com.example.basicactivity.fragments;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentManager;
-import androidx.viewpager2.widget.ViewPager2;
 
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.example.basicactivity.PagerAdapter;
 import com.example.basicactivity.R;
-import com.example.basicactivity.fragments.sitesPages.Calculator;
-import com.example.basicactivity.fragments.sitesPages.Demostar;
-import com.google.android.material.tabs.TabLayout;
+import com.example.basicactivity.fragments.sitesPages.*;
 
 public class Server extends Fragment {
 
@@ -22,11 +17,6 @@ public class Server extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
-        //Fragment demostar = new Demostar();
-        //getChildFragmentManager().beginTransaction().replace(R.id.fragmentContainerView, demostar).commit();
-        //Fragment calculator = new Calculator();
-        //getChildFragmentManager().beginTransaction().replace(R.id.fragmentContainerView, calculator).commit();
 
         // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_server, container, false);
@@ -44,7 +34,7 @@ public class Server extends Fragment {
                 getChildFragmentManager().beginTransaction().replace(R.id.fragmentContainerView, siteFragment).commit();
                 break;
             case 3:
-                siteFragment = new Calculator();
+                siteFragment = new Streaming();
                 getChildFragmentManager().beginTransaction().replace(R.id.fragmentContainerView, siteFragment).commit();
                 break;
         }

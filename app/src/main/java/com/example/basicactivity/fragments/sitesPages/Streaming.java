@@ -29,15 +29,15 @@ public class Streaming extends Fragment {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_streaming, container, false);
 
-        // Drop down menu pour la selection des sites
-        textQuality = (TextView) view.findViewById(R.id.TextQuality);
+        // Quality selection - drop down menu
+        textQuality = view.findViewById(R.id.TextQuality);
         dropDownMenu = view.findViewById(R.id.SelectQuality);
         String[] items = new String[]{"High Definition (4K)", "Regular (1080p)", "Low Definition (480p)"};
-        ArrayAdapter<String> adapter = new ArrayAdapter<String>(view.getContext(), android.R.layout.simple_spinner_dropdown_item, items);
+        ArrayAdapter<String> adapter = new ArrayAdapter<>(view.getContext(), android.R.layout.simple_spinner_dropdown_item, items);
         dropDownMenu.setAdapter(adapter);
         setSpinner();
 
-        textLog = (TextView) view.findViewById(R.id.textVLog);
+        textLog = view.findViewById(R.id.textVLog);
 
         return view;
     }
@@ -49,11 +49,11 @@ public class Streaming extends Fragment {
                 String res = (String) textLog.getText();
                 quality = (dropDownMenu.getSelectedItemPosition()+1);
 
-                textLog.setText(res + "\nSpinner is selected at " + MainActivity.printHeure() + "\n " + MyClient.setStr(String.valueOf("website " + quality)));
+                textLog.setText(res + "\nSpinner is selected at " + MainActivity.printHeure() + "\n " + MyClient.setStr("Quality " + quality));
             }
 
             public void onNothingSelected(AdapterView<?> adapterView) {
-                System.out.println("Nothing is selected");
+                System.out.println("Nothing is selected.");
             }
         });
     }

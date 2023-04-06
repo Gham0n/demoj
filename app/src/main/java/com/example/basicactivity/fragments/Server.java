@@ -37,6 +37,8 @@ public class Server extends Fragment {
                 siteFragment = new Streaming();
                 getChildFragmentManager().beginTransaction().replace(R.id.fragmentContainerView, siteFragment).commit();
                 break;
+
+            // TODO add other websites
         }
     }
 }

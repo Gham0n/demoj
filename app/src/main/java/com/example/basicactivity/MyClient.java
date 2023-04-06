@@ -9,39 +9,35 @@ public class MyClient {
 
     public static void launchClient(){
 
-        Thread thread = new Thread(new Runnable() {
+        Thread thread = new Thread(() -> {
+            try  {
+                //Socket s=new Socket("10.0.2.2",3333); //localhost
+                Socket s=new Socket("10.3.141.1",3333);       //Vega
+                DataOutputStream dout=new DataOutputStream(s.getOutputStream());
 
-            @Override
-            public void run() {
-                try  {
-                    //Socket s=new Socket("10.0.2.2",3333); //localhost
-                    Socket s=new Socket("10.3.141.1",3333);       //Vega
-                    DataOutputStream dout=new DataOutputStream(s.getOutputStream());
+                System.out.println("Connected to server.");
+                isConnected=true;
 
-                    System.out.println("Connected to server.");
-                    isConnected=true;
+                while(true){
 
-                    while(true){
-
-                        if(change) {
-                            System.out.println("str = " + str);
-                            dout.writeUTF(str);
-                            dout.flush();
-                            if(str == "stop"){
-                                isConnected=false;
-                                str="Empty";
-                                break;
-                            }
-
-                            change = false;
+                    if(change) {
+                        System.out.println("str = " + str);
+                        dout.writeUTF(str);
+                        dout.flush();
+                        if(str.equals("stop")){
+                            isConnected=false;
+                            str="Empty";
+                            break;
                         }
-                    }
 
-                    dout.close();
-                    s.close();
-                } catch (Exception e) {
-                    System.out.println("Failed to connect to server.");
+                        change = false;
+                    }
                 }
+
+                dout.close();
+                s.close();
+            } catch (Exception e) {
+                System.out.println("Failed to connect to server.");
             }
         });
 

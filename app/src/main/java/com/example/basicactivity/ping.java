@@ -1,7 +1,6 @@
 package com.example.basicactivity;
 
 import android.util.Log;
-import android.widget.TextView;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -21,7 +20,7 @@ public class ping {
                     process.getInputStream()));
             int i;
             char[] buffer = new char[4096];
-            StringBuffer output = new StringBuffer();
+            StringBuilder output = new StringBuilder();
             while ((i = reader.read(buffer)) > 0)
                 output.append(buffer, 0, i);
             reader.close();

@@ -29,7 +29,6 @@ public class MainActivity extends AppCompatActivity {
     ViewPager2 vp;
     PagerAdapter pa;
     static FragmentManager fm;
-
     View mainView;
 
     @Override
@@ -37,14 +36,11 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
 
         setContentView(R.layout.activity_main);
-
         mainView = findViewById(R.id.demoJLogo);
-
         tabLayout = findViewById(R.id.tab_layout);
         vp = findViewById(R.id.view_pager);
         pa = new PagerAdapter(this);
         fm = this.getSupportFragmentManager();
-
         vp.setAdapter(pa);
 
         tabLayout.addOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
@@ -75,14 +71,13 @@ public class MainActivity extends AppCompatActivity {
         });
 
 
-        /*********************Debut menu pop-up***********************/
+        /*************************   POP-UP MENU   *************************/
 
-        // Créer une instance de PopupMenu
+        // New instance of PopupMenu
         PopupMenu popup = new PopupMenu(this, findViewById(R.id.menuBurger));
 
         // Ajouter les boutons supplémentaires
         popup.getMenuInflater().inflate(R.menu.popup_menu, popup.getMenu());
-
 
         // Définir un écouteur de clic pour le FloatingActionButton
         findViewById(R.id.menuBurger).setOnClickListener(new View.OnClickListener() {
@@ -92,6 +87,7 @@ public class MainActivity extends AppCompatActivity {
                 popup.show();
             }
         });
+
         // Définir un écouteur de clic pour les éléments de menu
         popup.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
             @Override
@@ -128,10 +124,14 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        /**************Fin menu pop-up***********************/
+        /*******************************************************************/
 
     }
 
+    /**
+     * Set different themes and colors depending on the current Tab.
+     * @param selectedTab
+     */
     public void setColors(int selectedTab) {
         int black = ContextCompat.getColor(this, R.color.black);
         int color = black;
@@ -153,6 +153,10 @@ public class MainActivity extends AppCompatActivity {
         tabLayout.setTabTextColors(black, color);
     }
 
+    /**
+     * Calls the method setSite from the Server fragment.
+     * @param site selected website
+     */
     public static void setSite(int site) {
         for(Fragment fragment : fm.getFragments()) {
             if(fragment instanceof Server) {

@@ -21,66 +21,25 @@
             android:layout_centerHorizontal="true"
             android:orientation="vertical">
 
-            <Button
-                android:id="@+id/pingDeneb"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_centerHorizontal="true"
-                android:layout_marginTop="10dp"
-                android:onClick="onClickDeneb"
-                android:text="ping Deneb"
-                app:backgroundTint="@color/green" />
-
-            <LinearLayout
-                android:id="@+id/selectRefresh"
+            <androidx.appcompat.widget.SwitchCompat
+                android:id="@+id/refreshSelection"
                 android:layout_width="match_parent"
-                android:layout_height="175dp"
-                android:layout_below="@+id/pingDeneb"
+                android:layout_height="wrap_content"
                 android:layout_marginTop="20dp"
-                android:background="@color/lightGreen"
-                android:orientation="vertical">
-
-                <TextView
-                    android:id="@+id/textRefresh"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:padding="20dp"
-                    android:text="Rafraîchissement :"
-                    android:textColor="@color/green"
-                    android:textSize="10pt" />
-
-                <LinearLayout
-                    android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
-                    android:layout_marginLeft="50dp"
-                    android:layout_marginRight="50dp">
-
-                    <Button
-                        android:id="@+id/buttonAuto"
-                        android:layout_width="150dp"
-                        android:layout_height="75dp"
-                        android:layout_marginTop="10dp"
-                        android:background="@drawable/arrondir_gauche"
-                        android:text="Auto"
-                        app:backgroundTint="@color/green" />
-
-                    <Button
-                        android:id="@+id/buttonManual"
-                        android:layout_width="150dp"
-                        android:layout_height="75dp"
-                        android:layout_marginTop="10dp"
-                        android:background="@drawable/arrondir"
-                        android:text="Manual"
-                        android:textColor="@color/green"
-                        app:backgroundTint="@color/white" />
-                </LinearLayout>
-            </LinearLayout>
+                android:background="@color/lightRed"
+                android:checked="false"
+                android:minHeight="60dp"
+                android:padding="20dp"
+                android:switchMinWidth="60dp"
+                android:text="Auto refresh :"
+                android:textColor="@color/red"
+                android:textSize="10pt"
+                app:theme="@style/ServerStyle" />
 
             <ScrollView
-                android:id="@+id/SCROLLER_ID"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:layout_below="@id/selectRefresh"
+                android:layout_below="@id/refreshSelection"
                 android:layout_marginTop="15dp"
                 android:layout_marginBottom="15dp"
                 android:fillViewport="true"
@@ -92,7 +51,7 @@
                     android:orientation="vertical">
 
                     <TextView
-                        android:id="@+id/textVLog"
+                        android:id="@+id/logGallery"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:background="@color/dark_grey"

@@ -1,6 +1,5 @@
 package com.example.basicactivity;
 
-import android.database.Observable;
 import android.os.Bundle;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -184,21 +183,21 @@ public class MainActivity extends AppCompatActivity {
     public void onClickVega(View view) throws IOException, InterruptedException {
         System.out.println("Vega button pushed at " + printHeure());
 
-        TextView tmp = (TextView) findViewById(R.id.textVLog);
+        TextView tmp = (TextView) findViewById(R.id.logGallery);
         String res = (String) tmp.getText();
         tmp.setText(res + "\nVega button pushed at " + printHeure() + "\n\n" + ping.ping("10.3.141.1"));
     }
 
     public void onClickDeneb(View view) throws IOException, InterruptedException {
         System.out.println("Deneb button pushed at " + printHeure());
-        TextView tmp = (TextView) findViewById(R.id.textVLog);
+        TextView tmp = (TextView) findViewById(R.id.logGallery);
         String res = (String) tmp.getText();
         tmp.setText(res + "\nDeneb button pushed at " + printHeure() + "\n\n" + ping.ping("10.3.141.203"));
     }
 
     public void onClickAltair(View view) throws IOException, InterruptedException {
         System.out.println("Altaïr button pushed at " + printHeure());
-        TextView tmp = (TextView) findViewById(R.id.textVLog);
+        TextView tmp = (TextView) findViewById(R.id.logGallery);
         String res = (String) tmp.getText();
         tmp.setText(res + "\nVega button pushed at " + printHeure() + "\n\n" + ping.ping("10.3.141.226"));
     }

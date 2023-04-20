@@ -34,7 +34,7 @@ public class Server extends Fragment {
                 getChildFragmentManager().beginTransaction().replace(R.id.fragmentContainerView, siteFragment).commit();
                 break;
             case 3:
-                siteFragment = new Streaming();
+                siteFragment = new Gallery();
                 getChildFragmentManager().beginTransaction().replace(R.id.fragmentContainerView, siteFragment).commit();
                 break;
 

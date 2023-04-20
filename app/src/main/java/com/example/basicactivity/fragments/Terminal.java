@@ -6,7 +6,6 @@ import android.graphics.Typeface;
 import android.os.Build;
 import android.os.Bundle;
 
-import androidx.annotation.NonNull;
 import androidx.appcompat.widget.SwitchCompat;
 import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
@@ -17,6 +16,7 @@ import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.LinearLayout;
 import android.widget.Spinner;
 import android.widget.TextView;
 
@@ -27,13 +27,10 @@ import com.google.android.material.slider.Slider;
 
 
 public class Terminal extends Fragment {
-    SwitchCompat sw;
-    TextView textSlider;
     TextView textNav;
     TextView textSites;
-    Slider slider;
     Spinner dropDownMenu;
-    Button firefox;
+    Button chromium;
     Button midori;
     TextView textLog;
     int site;
@@ -43,36 +40,33 @@ public class Terminal extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
 
+        // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_terminal, container, false);
 
-        // Screen - switch
-        sw = view.findViewById(R.id.SwitchEcran);
-        setSwitch();
+        // Navigator selection - buttons
+        textNav = view.findViewById(R.id.textBrowserSelection);
+        chromium = view.findViewById(R.id.chromiumButton);
+        midori = view.findViewById(R.id.midoriButton);
 
-        // Number of requests - slider
-        slider = view.findViewById(R.id.SliderRequêtes);
-        textSlider = view.findViewById(R.id.TextRequêtes);
-        setSlider();
+        LinearLayout layout = view.findViewById(R.id.browserButtonsLayout);
+        chromium.setWidth(layout.getWidth()/2);
+        midori.setWidth(layout.getWidth()/2);
+        setButtons();
 
         // Site selection - drop down menu
-        textSites = view.findViewById(R.id.TextSites);
-        dropDownMenu = view.findViewById(R.id.SelectSite);
-        String[] items = new String[]{"1 - CALCULATRICE", "2 - DEMOSTAR", "3 - STREAMING"};
+        textSites = view.findViewById(R.id.textWebsiteSelection);
+        dropDownMenu = view.findViewById(R.id.websiteSpinner);
+        String[] items = new String[]{"1 - CALCULATOR", "2 - DEMOSTAR", "3 - GALLERY"};
         ArrayAdapter<String> adapter = new ArrayAdapter<>(view.getContext(), android.R.layout.simple_spinner_dropdown_item, items);
         dropDownMenu.setAdapter(adapter);
         setSpinner();
 
-        // Navigator selection - buttons
-        textNav = view.findViewById(R.id.textnav);
-        firefox = view.findViewById(R.id.navFirefox);
-        midori = view.findViewById(R.id.navMidori);
-        setButtons();
-
-        textLog = view.findViewById(R.id.textVLog);
+        textLog = view.findViewById(R.id.logGallery);
 
         return view;
     }
 
+    /** TODO remove
     public void setSlider() {
         textSlider.setTypeface(Typeface.DEFAULT_BOLD);
         slider.addOnSliderTouchListener(new Slider.OnSliderTouchListener() {
@@ -102,40 +96,38 @@ public class Terminal extends Fragment {
             }
         });
     }
+     **/
 
     public void setButtons() {
         textNav.setTypeface(Typeface.DEFAULT_BOLD);
         midori.setOnClickListener(view -> {
-            System.out.println("Midori pushed");
-            firefox.setEnabled(true);
+            chromium.setEnabled(true);
             midori.setEnabled(false);
 
             String res = (String) textLog.getText();
-            textLog.setText(res + "\nMidori button pushed at " + MainActivity.printHeure() + "\n " + MyClient.setStr("Navigator midori"));
+            textLog.setText(res + "\nMidori button pushed at " + MainActivity.printHeure() + "\n " + MyClient.setStr("Browser : midori"));
 
-            firefox.setTextColor(ContextCompat.getColor(view.getContext(), R.color.red));
+            chromium.setTextColor(ContextCompat.getColor(view.getContext(), R.color.red));
             midori.setTextColor(ContextCompat.getColor(view.getContext(), R.color.white));
 
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-                firefox.setBackgroundTintList(ColorStateList.valueOf(ContextCompat.getColor(view.getContext(), R.color.white)));
+                chromium.setBackgroundTintList(ColorStateList.valueOf(ContextCompat.getColor(view.getContext(), R.color.white)));
                 midori.setBackgroundTintList(ColorStateList.valueOf(ContextCompat.getColor(view.getContext(), R.color.red)));
             }
         });
 
-        firefox.setOnClickListener(view -> {
-            System.out.println("Firefox pushed");
-
-            firefox.setEnabled(false);
+        chromium.setOnClickListener(view -> {
+            chromium.setEnabled(false);
             midori.setEnabled(true);
 
             String res = (String) textLog.getText();
-            textLog.setText(res + "\nMidori button pushed at " + MainActivity.printHeure() + "\n " + MyClient.setStr("Navigator firefox"));
+            textLog.setText(res + "\nFirefox button pushed at " + MainActivity.printHeure() + "\n " + MyClient.setStr("Browser : firefox"));
 
-            firefox.setTextColor(ContextCompat.getColor(view.getContext(), R.color.white));
+            chromium.setTextColor(ContextCompat.getColor(view.getContext(), R.color.white));
             midori.setTextColor(ContextCompat.getColor(view.getContext(), R.color.red));
 
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-                firefox.setBackgroundTintList(ColorStateList.valueOf(ContextCompat.getColor(view.getContext(), R.color.red)));
+                chromium.setBackgroundTintList(ColorStateList.valueOf(ContextCompat.getColor(view.getContext(), R.color.red)));
                 midori.setBackgroundTintList(ColorStateList.valueOf(ContextCompat.getColor(view.getContext(), R.color.white)));
             }
         });
@@ -150,7 +142,7 @@ public class Terminal extends Fragment {
 
                 MainActivity.setSite(site);
 
-                textLog.setText(res + "\nSpinner is selected at " + MainActivity.printHeure() + "\n " + MyClient.setStr("Website " + site));
+                textLog.setText(res + "\nSpinner is selected at " + MainActivity.printHeure() + "\n " + MyClient.setStr("Website : " + site));
             }
 
             public void onNothingSelected(AdapterView<?> adapterView) {

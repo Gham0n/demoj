@@ -16,10 +16,10 @@
 
         <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_centerHorizontal="true"
+            android:layout_height="wrap_content"
             android:orientation="vertical">
 
+            <!-- TODO remove
             <Button
                 android:id="@+id/pingVega"
                 android:layout_width="wrap_content"
@@ -29,30 +29,29 @@
                 android:onClick="onClickVega"
                 android:text="ping Vega"
                 app:backgroundTint="@color/blue" />
+                -->
 
             <LinearLayout
                 android:id="@+id/layoutSlider"
                 android:layout_width="match_parent"
                 android:layout_height="175dp"
-                android:layout_below="@+id/pingVega"
                 android:layout_marginTop="20dp"
                 android:background="@color/lightBlue"
                 android:orientation="vertical">
 
                 <TextView
-                    android:id="@+id/TextRequêtes"
+                    android:id="@+id/textGalleryDelaySelection"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:padding="20dp"
-                    android:text="Temps de latence:"
+                    android:text="Latency :"
                     android:textColor="@color/blue"
                     android:textSize="10pt" />
 
                 <com.google.android.material.slider.Slider
-                    android:id="@+id/SliderRequêtes"
+                    android:id="@+id/galleryDelaySlider"
                     android:layout_width="match_parent"
                     android:layout_height="60dp"
-                    android:contentDescription="Temps de latence."
                     android:padding="20dp"
                     android:stepSize="1"
                     android:value="0"
@@ -77,7 +76,7 @@
                 android:minHeight="60dp"
                 android:padding="20dp"
                 android:switchMinWidth="60dp"
-                android:text="Perte de paquets :"
+                android:text="Packet loss :"
                 android:textColor="@color/blue"
                 android:textSize="10pt"
                 app:theme="@style/NetworkStyle" />
@@ -96,8 +95,7 @@
                 <TextView
                     android:id="@+id/textVLog2"
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:layout_below="@+id/pingVega"
+                    android:layout_height="wrap_content"
                     android:background="@color/dark_grey"
                     android:hint="Log:"
                     android:textColor="@color/light_grey"

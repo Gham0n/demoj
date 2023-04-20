@@ -4,8 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".fragments.sitesPages.Calculator"
-    android:id="@+id/calculatorLayout">
+    tools:context=".fragments.sitesPages.Demostar"
+    android:id="@+id/demostarLayout">
 
     <ScrollView
         android:id="@+id/mainScroll"
@@ -21,7 +21,7 @@
             android:orientation="vertical">
 
             <LinearLayout
-                android:id="@+id/sideSelection"
+                android:id="@+id/galleryDelaySelection"
                 android:layout_width="match_parent"
                 android:layout_height="175dp"
                 android:layout_marginTop="20dp"
@@ -29,71 +29,57 @@
                 android:orientation="vertical">
 
                 <TextView
-                    android:id="@+id/textSideSelection"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:padding="20dp"
-                    android:text="Side :"
-                    android:textColor="@color/green"
-                    android:textSize="10pt" />
-
-                <LinearLayout
-                    android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
-                    android:layout_marginLeft="50dp"
-                    android:layout_marginRight="50dp">
-
-                    <Button
-                        android:id="@+id/clientSideButton"
-                        android:layout_width="150dp"
-                        android:layout_height="75dp"
-                        android:layout_marginTop="10dp"
-                        android:background="@drawable/round_left_corner"
-                        android:text="Client"
-                        android:textColor="@color/white"
-                        app:backgroundTint="@color/green"
-                        style="?android:attr/buttonBarButtonStyle" />
-
-                    <Button
-                        android:id="@+id/serverSideButton"
-                        android:layout_width="150dp"
-                        android:layout_height="75dp"
-                        android:layout_marginTop="10dp"
-                        android:background="@drawable/round_right_corner"
-                        android:text="Server"
-                        android:textColor="@color/green"
-                        app:backgroundTint="@color/white"
-                        style="?android:attr/buttonBarButtonStyle" />
-                </LinearLayout>
-            </LinearLayout>
-
-            <LinearLayout
-                android:id="@+id/calculatorDelaySelection"
-                android:layout_width="match_parent"
-                android:layout_height="175dp"
-                android:layout_below="@+id/sideSelection"
-                android:layout_marginTop="20dp"
-                android:background="@color/lightGreen"
-                android:orientation="vertical">
-
-                <TextView
-                    android:id="@+id/textCalculatorDelaySelection"
+                    android:id="@+id/textGalleryDelaySelection"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:padding="20dp"
-                    android:text="Delay between every calculation :"
+                    android:text="Delay :"
                     android:textColor="@color/green"
                     android:textSize="10pt" />
 
                 <com.google.android.material.slider.Slider
-                    android:id="@+id/calculatorDelaySlider"
+                    android:id="@+id/galleryDelaySlider"
                     android:layout_width="match_parent"
                     android:layout_height="60dp"
                     android:padding="20dp"
-                    android:stepSize="50"
-                    android:value="50"
-                    android:valueFrom="50"
+                    android:stepSize="100"
+                    android:value="500"
+                    android:valueFrom="500"
                     android:valueTo="5000"
+                    app:labelBehavior="visible"
+                    app:theme="@style/ServerStyle"
+                    app:thumbColor="@color/green"
+                    app:tickVisible="false"
+                    app:trackColorActive="@color/green" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/compressionQualitySelection"
+                android:layout_width="match_parent"
+                android:layout_height="175dp"
+                android:layout_marginTop="20dp"
+                android:layout_below="@id/galleryDelaySelection"
+                android:background="@color/lightGreen"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/textCompressionQualitySelection"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:padding="20dp"
+                    android:text="Compression quality :"
+                    android:textColor="@color/green"
+                    android:textSize="10pt" />
+
+                <com.google.android.material.slider.Slider
+                    android:id="@+id/compressionQualitySlider"
+                    android:layout_width="match_parent"
+                    android:layout_height="60dp"
+                    android:padding="20dp"
+                    android:stepSize="0.1"
+                    android:value="0"
+                    android:valueFrom="0"
+                    android:valueTo="1"
                     app:labelBehavior="visible"
                     app:theme="@style/ServerStyle"
                     app:thumbColor="@color/green"
@@ -104,7 +90,7 @@
             <ScrollView
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:layout_below="@id/calculatorDelaySelection"
+                android:layout_below="@id/compressionQualitySelection"
                 android:layout_marginTop="15dp"
                 android:layout_marginBottom="15dp"
                 android:fillViewport="true"
@@ -124,10 +110,8 @@
                         android:textColor="@color/light_grey"
                         android:textColorHint="@color/light_grey" />
                 </LinearLayout>
-
             </ScrollView>
 
         </RelativeLayout>
     </ScrollView>
-
 </RelativeLayout>

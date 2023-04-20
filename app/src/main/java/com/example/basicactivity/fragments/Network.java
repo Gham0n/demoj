@@ -29,8 +29,8 @@ public class Network extends Fragment {
         View view = inflater.inflate(R.layout.fragment_network, container, false);
 
         // Latency - slider
-        slider = view.findViewById(R.id.SliderRequêtes);
-        textSlider = view.findViewById(R.id.TextRequêtes);
+        slider = view.findViewById(R.id.galleryDelaySlider);
+        textSlider = view.findViewById(R.id.textGalleryDelaySelection);
         setSlider();
 
         // Packet loss - switch

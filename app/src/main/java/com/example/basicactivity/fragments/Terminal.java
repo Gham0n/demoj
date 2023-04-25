@@ -6,6 +6,7 @@ import android.graphics.Typeface;
 import android.os.Build;
 import android.os.Bundle;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.widget.SwitchCompat;
 import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
@@ -29,7 +30,9 @@ import com.google.android.material.slider.Slider;
 public class Terminal extends Fragment {
     TextView textNav;
     TextView textSites;
+    TextView textSlider;
     Spinner dropDownMenu;
+    Slider slider;
     Button chromium;
     Button midori;
     TextView textLog;
@@ -53,6 +56,10 @@ public class Terminal extends Fragment {
         midori.setWidth(layout.getWidth()/2);
         setButtons();
 
+        // Requests - slider
+        textSlider = view.findViewById(R.id.textRequestSlider);
+        slider = view.findViewById(R.id.requestSlider);
+
         // Site selection - drop down menu
         textSites = view.findViewById(R.id.textWebsiteSelection);
         dropDownMenu = view.findViewById(R.id.websiteSpinner);
@@ -66,7 +73,7 @@ public class Terminal extends Fragment {
         return view;
     }
 
-    /** TODO remove
+
     public void setSlider() {
         textSlider.setTypeface(Typeface.DEFAULT_BOLD);
         slider.addOnSliderTouchListener(new Slider.OnSliderTouchListener() {
@@ -74,14 +81,14 @@ public class Terminal extends Fragment {
 
             }
             public void onStopTrackingTouch(@NonNull Slider slider) {
-                System.out.println("The slider value is " + slider.getValue());
                 String str = Float.toString(slider.getValue());
                 String res = (String) textLog.getText();
-                textLog.setText(res + "\nSlider moved at " + MainActivity.printHeure() + "\n " + MyClient.setStr("NbRequests " + str));
+                textLog.setText(res + "\nSlider moved at " + MainActivity.printHeure() + "\n " + MyClient.setStr("NbRequests : " + str));
             }
         });
     }
 
+    /** TODO remove
     public void setSwitch() {
         sw.setTypeface(Typeface.DEFAULT_BOLD);
         sw.setOnCheckedChangeListener((buttonView, isChecked) -> {
@@ -121,7 +128,7 @@ public class Terminal extends Fragment {
             midori.setEnabled(true);
 
             String res = (String) textLog.getText();
-            textLog.setText(res + "\nFirefox button pushed at " + MainActivity.printHeure() + "\n " + MyClient.setStr("Browser : firefox"));
+            textLog.setText(res + "\nChromium button pushed at " + MainActivity.printHeure() + "\n " + MyClient.setStr("Browser : chromium"));
 
             chromium.setTextColor(ContextCompat.getColor(view.getContext(), R.color.white));
             midori.setTextColor(ContextCompat.getColor(view.getContext(), R.color.red));
@@ -133,7 +140,7 @@ public class Terminal extends Fragment {
         });
     }
 
-    public void setSpinner(){
+    public void setSpinner() {
         textSites.setTypeface(Typeface.DEFAULT_BOLD);
         dropDownMenu.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {

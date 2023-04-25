@@ -49,7 +49,6 @@ public class Gallery extends Fragment {
         delayTextSlider.setTypeface(Typeface.DEFAULT_BOLD);
         delaySlider.addOnSliderTouchListener(new Slider.OnSliderTouchListener() {
             public void onStartTrackingTouch(@NonNull Slider slider) {
-
             }
             public void onStopTrackingTouch(@NonNull Slider slider) {
                 String str = Float.toString(slider.getValue());
@@ -72,5 +71,4 @@ public class Gallery extends Fragment {
             }
         });
     }
-
 }

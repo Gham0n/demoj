@@ -88,22 +88,6 @@ public class Terminal extends Fragment {
         });
     }
 
-    /** TODO remove
-    public void setSwitch() {
-        sw.setTypeface(Typeface.DEFAULT_BOLD);
-        sw.setOnCheckedChangeListener((buttonView, isChecked) -> {
-            if (isChecked) {
-                System.out.println("The toggle is enabled");
-                String res = (String) textLog.getText();
-                textLog.setText(res + "\nToggle is enabled at " + MainActivity.printHeure() + "\n " + MyClient.setStr("Screen on"));
-            } else {
-                System.out.println("The toggle is disabled");
-                String res = (String) textLog.getText();
-                textLog.setText(res + "\nToggle is disabled at " + MainActivity.printHeure() + "\n " + MyClient.setStr("Screen off"));
-            }
-        });
-    }
-     **/
 
     public void setButtons() {
         textNav.setTypeface(Typeface.DEFAULT_BOLD);

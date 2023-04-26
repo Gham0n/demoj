@@ -201,6 +201,9 @@ public class MainActivity extends AppCompatActivity {
         String res = (String) tmp.getText();
         tmp.setText(res + "\nVega button pushed at " + printHeure() + "\n\n" + ping.ping("10.3.141.226"));
     }
+
+
+    //Ping des rpi pour debug au cas ou
 /*
     public void onClickVegaConnect(View view) throws Exception {
         System.out.println("Connect button pushed at " + printHeure());

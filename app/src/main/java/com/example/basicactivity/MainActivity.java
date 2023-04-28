@@ -70,57 +70,62 @@ public class MainActivity extends AppCompatActivity {
         });
 
 
-        /*************************   POP-UP MENU   *************************/
+        /*
+Ce code implémente un menu Popup pour l'application Android. Le menu Popup est déclenché par un clic sur un FloatingActionButton et affiche deux options pour se connecter à un serveur et pour quitter l'application.
+*/
 
-        // New instance of PopupMenu
+// Nouvelle instance du PopupMenu
         PopupMenu popup = new PopupMenu(this, findViewById(R.id.menuBurger));
 
-        // Ajouter les boutons supplémentaires
+// Ajouter les boutons supplémentaires
         popup.getMenuInflater().inflate(R.menu.popup_menu, popup.getMenu());
 
-        // Définir un écouteur de clic pour le FloatingActionButton
+// Définir un écouteur de clic pour le FloatingActionButton
         findViewById(R.id.menuBurger).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                // Afficher le PopupMenu
+// Afficher le PopupMenu
                 popup.show();
             }
         });
 
-        // Définir un écouteur de clic pour les éléments de menu
+// Définir un écouteur de clic pour les éléments de menu
         popup.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
             @Override
             public boolean onMenuItemClick(MenuItem menuItem) {
-                // Vérifier si l'élément sélectionné est "Button 1"
+// Vérifier si l'élément sélectionné est "Button 1"
                 if (menuItem.getItemId() == R.id.btn_conncect) {
-                    // Afficher le message de print
+// Afficher le message de print
                     System.out.println("Connect button pushed at " + printHeure());
+                    // Lancer le client pour se connecter au serveur
                     MyClient.launchClient();
+
+                    // Attendre 100 millisecondes pour laisser le temps à la connexion de s'établir
                     try {
                         Thread.sleep(100);
                     } catch (InterruptedException e) {
                         e.printStackTrace();
                     }
+
+                    // Vérifier si la connexion est établie et afficher un message Toast approprié
                     if(MyClient.getIsConnected())Toast.makeText(MainActivity.this, "Connecté au serveur.", Toast.LENGTH_SHORT).show();
                     else Toast.makeText(MainActivity.this, "Erreur. Le serveur n'est pas démarré.", Toast.LENGTH_SHORT).show();
-                    return true;
-                }
-                else  if (menuItem.getItemId() == R.id.btn_send) {
-                    // Afficher le message de print
-                    System.out.println("Send button pushed at " + printHeure());
-                    MyClient.setStr("Blabla Test");
                     return true;
                 }
                 else  if (menuItem.getItemId() == R.id.btn_quit) {
                     // Afficher le message de print
                     System.out.println("Stop button pushed at " + printHeure());
-                    MyClient.setStr("stop");
-                    Toast.makeText(MainActivity.this, "Deconnexion.", Toast.LENGTH_SHORT).show();
 
+                    // Envoyer une chaîne de caractères "stop" au serveur pour arrêter la connexion
+                    MyClient.setStr("stop");
+
+                    // Afficher un message Toast pour indiquer que la connexion est interrompue
+                    Toast.makeText(MainActivity.this, "Deconnexion...", Toast.LENGTH_SHORT).show();
                     return true;
                 }
                 return false;
             }
+
         });
 
         /*******************************************************************/

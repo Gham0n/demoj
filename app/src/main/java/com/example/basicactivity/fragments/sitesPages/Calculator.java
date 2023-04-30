@@ -62,8 +62,8 @@ public class Calculator extends Fragment {
             }
             public void onStopTrackingTouch(@NonNull Slider slider) {
                 String str = Float.toString(slider.getValue());
-                String res = (String) textLog.getText();
-                textLog.setText(res + "\nSlider moved at " + MainActivity.printHeure() + "\n " + MyClient.setStr("CalculatorDelay : " + str));
+                String log = textLog.getText() + "\nSlider moved at " + MainActivity.printTime() + "\n " + MyClient.setStr("CalculatorDelay : " + str);
+                textLog.setText(log);
             }
         });
     }
@@ -74,8 +74,8 @@ public class Calculator extends Fragment {
             client.setEnabled(true);
             server.setEnabled(false);
 
-            String res = (String) textLog.getText();
-            textLog.setText(res + "\nServer button pushed at " + MainActivity.printHeure() + "\n " + MyClient.setStr("ServerSide : true"));
+            String log = textLog.getText() + "\nServer button pushed at " + MainActivity.printTime() + "\n " + MyClient.setStr("ServerSide : true");
+            textLog.setText(log);
 
             client.setTextColor(ContextCompat.getColor(view.getContext(), R.color.green));
             server.setTextColor(ContextCompat.getColor(view.getContext(), R.color.white));
@@ -90,8 +90,8 @@ public class Calculator extends Fragment {
             client.setEnabled(false);
             server.setEnabled(true);
 
-            String res = (String) textLog.getText();
-            textLog.setText(res + "\nClient button pushed at " + MainActivity.printHeure() + "\n " + MyClient.setStr("ServerSide : false"));
+            String log = textLog.getText() + "\nClient button pushed at " + MainActivity.printTime() + "\n " + MyClient.setStr("ServerSide : false");
+            textLog.setText(log);
 
             client.setTextColor(ContextCompat.getColor(view.getContext(), R.color.white));
             server.setTextColor(ContextCompat.getColor(view.getContext(), R.color.green));

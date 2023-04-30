@@ -50,8 +50,8 @@ public class Network extends Fragment {
             }
             public void onStopTrackingTouch(@NonNull Slider slider) {
                 String str = Float.toString(slider.getValue());
-                String res = (String) textLog.getText();
-                textLog.setText(res + "\nSlider moved at " + MainActivity.printHeure() + "\n " + MyClient.setStr("Latency : " + str));
+                String log = textLog.getText() + "\nSlider moved at " + MainActivity.printTime() + "\n " + MyClient.setStr("Latency : " + str);
+                textLog.setText(log);
             }
         });
     }
@@ -59,12 +59,13 @@ public class Network extends Fragment {
     public void setSwitch() {
         sw.setTypeface(Typeface.DEFAULT_BOLD);
         sw.setOnCheckedChangeListener((buttonView, isChecked) -> {
+            String log = (String) textLog.getText();
             if (isChecked) {
-                String res = (String) textLog.getText();
-                textLog.setText(res + "\nToggle is enabled at " + MainActivity.printHeure() + "\n " + MyClient.setStr("PacketLoss : true"));
+                log += "\nToggle is enabled at " + MainActivity.printTime() + "\n " + MyClient.setStr("PacketLoss : true");
+                textLog.setText(log);
             } else {
-                String res = (String) textLog.getText();
-                textLog.setText(res + "\nToggle is enabled at " + MainActivity.printHeure() + "\n " + MyClient.setStr("PacketLoss : false"));
+                log += "\nToggle is disabled at " + MainActivity.printTime() + "\n " + MyClient.setStr("PacketLoss : false");
+                textLog.setText(log);
             }
         });
     }

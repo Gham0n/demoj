@@ -7,7 +7,6 @@ import android.os.Build;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
-import androidx.appcompat.widget.SwitchCompat;
 import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
 
@@ -59,20 +58,20 @@ public class Terminal extends Fragment {
         // Requests - slider
         textSlider = view.findViewById(R.id.textRequestSlider);
         slider = view.findViewById(R.id.requestSlider);
+        setSlider();
 
         // Site selection - drop down menu
         textSites = view.findViewById(R.id.textWebsiteSelection);
         dropDownMenu = view.findViewById(R.id.websiteSpinner);
-        String[] items = new String[]{"1 - CALCULATOR", "2 - DEMOSTAR", "3 - GALLERY"};
+        String[] items = new String[]{"0 - NO WEBSITE" , "1 - CALCULATOR", "2 - SUBWAY", "3 - GALLERY"};
         ArrayAdapter<String> adapter = new ArrayAdapter<>(view.getContext(), android.R.layout.simple_spinner_dropdown_item, items);
         dropDownMenu.setAdapter(adapter);
         setSpinner();
 
-        textLog = view.findViewById(R.id.logGallery);
+        textLog = view.findViewById(R.id.logTerminal);
 
         return view;
     }
-
 
     public void setSlider() {
         textSlider.setTypeface(Typeface.DEFAULT_BOLD);
@@ -82,12 +81,11 @@ public class Terminal extends Fragment {
             }
             public void onStopTrackingTouch(@NonNull Slider slider) {
                 String str = Float.toString(slider.getValue());
-                String res = (String) textLog.getText();
-                textLog.setText(res + "\nSlider moved at " + MainActivity.printHeure() + "\n " + MyClient.setStr("NbRequests : " + str));
+                String log = textLog.getText() + "\nSlider moved at " + MainActivity.printTime() + "\n " + MyClient.setStr("NbRequests : " + str);
+                textLog.setText(log);
             }
         });
     }
-
 
     public void setButtons() {
         textNav.setTypeface(Typeface.DEFAULT_BOLD);
@@ -95,8 +93,8 @@ public class Terminal extends Fragment {
             chromium.setEnabled(true);
             midori.setEnabled(false);
 
-            String res = (String) textLog.getText();
-            textLog.setText(res + "\nMidori button pushed at " + MainActivity.printHeure() + "\n " + MyClient.setStr("Browser : midori"));
+            String log = textLog.getText() + "\nMidori button pushed at " + MainActivity.printTime() + "\n " + MyClient.setStr("Browser : midori");
+            textLog.setText(log);
 
             chromium.setTextColor(ContextCompat.getColor(view.getContext(), R.color.red));
             midori.setTextColor(ContextCompat.getColor(view.getContext(), R.color.white));
@@ -111,8 +109,8 @@ public class Terminal extends Fragment {
             chromium.setEnabled(false);
             midori.setEnabled(true);
 
-            String res = (String) textLog.getText();
-            textLog.setText(res + "\nChromium button pushed at " + MainActivity.printHeure() + "\n " + MyClient.setStr("Browser : chromium"));
+            String log = textLog.getText() + "\nChromium button pushed at " + MainActivity.printTime() + "\n " + MyClient.setStr("Browser : chromium");
+            textLog.setText(log);
 
             chromium.setTextColor(ContextCompat.getColor(view.getContext(), R.color.white));
             midori.setTextColor(ContextCompat.getColor(view.getContext(), R.color.red));
@@ -128,12 +126,11 @@ public class Terminal extends Fragment {
         textSites.setTypeface(Typeface.DEFAULT_BOLD);
         dropDownMenu.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
-                String res = (String) textLog.getText();
-                site = (dropDownMenu.getSelectedItemPosition()+1);
+                site = (dropDownMenu.getSelectedItemPosition());
+                MainActivity.setSite(site); // sets fragment for Server
 
-                MainActivity.setSite(site);
-
-                textLog.setText(res + "\nSpinner is selected at " + MainActivity.printHeure() + "\n " + MyClient.setStr("Website : " + site));
+                String log = textLog.getText() + "\nSpinner is selected at " + MainActivity.printTime() + "\n " + MyClient.setStr("Website : " + site);
+                textLog.setText(log);
             }
 
             public void onNothingSelected(AdapterView<?> adapterView) {

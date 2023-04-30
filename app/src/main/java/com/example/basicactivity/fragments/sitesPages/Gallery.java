@@ -5,7 +5,6 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Spinner;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -52,8 +51,8 @@ public class Gallery extends Fragment {
             }
             public void onStopTrackingTouch(@NonNull Slider slider) {
                 String str = Float.toString(slider.getValue());
-                String res = (String) textLog.getText();
-                textLog.setText(res + "\nSlider moved at " + MainActivity.printHeure() + "\n " + MyClient.setStr("GalleryDelay : " + str));
+                String log = textLog.getText() + "\nSlider moved at " + MainActivity.printTime() + "\n " + MyClient.setStr("GalleryDelay : " + str);
+                textLog.setText(log);
             }
         });
     }
@@ -66,8 +65,8 @@ public class Gallery extends Fragment {
             }
             public void onStopTrackingTouch(@NonNull Slider slider) {
                 String str = Float.toString(slider.getValue());
-                String res = (String) textLog.getText();
-                textLog.setText(res + "\nSlider moved at " + MainActivity.printHeure() + "\n " + MyClient.setStr("CompressionQuality : " + str));
+                String log = textLog.getText() + "\nSlider moved at " + MainActivity.printTime() + "\n " + MyClient.setStr("CompressionQuality : " + str);
+                textLog.setText(log);
             }
         });
     }

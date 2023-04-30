@@ -22,23 +22,23 @@ public class Server extends Fragment {
         return inflater.inflate(R.layout.fragment_server, container, false);
     }
 
+    /**
+     * The fragment showed will change according to the selected site in the Terminal.
+     * @param site selected site
+     */
     public void setSite(int site) {
-        Fragment siteFragment;
+        Fragment siteFragment = new NoWebsite();
         switch (site) {
             case 1:
                 siteFragment = new Calculator();
-                getChildFragmentManager().beginTransaction().replace(R.id.fragmentContainerView, siteFragment).commit();
                 break;
             case 2:
-                siteFragment = new Demostar();
-                getChildFragmentManager().beginTransaction().replace(R.id.fragmentContainerView, siteFragment).commit();
+                siteFragment = new Subway();
                 break;
             case 3:
                 siteFragment = new Gallery();
-                getChildFragmentManager().beginTransaction().replace(R.id.fragmentContainerView, siteFragment).commit();
                 break;
-
-            // TODO add other websites
         }
+        getChildFragmentManager().beginTransaction().replace(R.id.fragmentContainerView, siteFragment).commit();
     }
 }

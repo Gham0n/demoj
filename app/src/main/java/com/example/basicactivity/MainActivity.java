@@ -4,9 +4,7 @@ import android.os.Bundle;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.view.MenuItem;
 import android.view.View;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.appcompat.widget.PopupMenu;
@@ -18,9 +16,9 @@ import androidx.viewpager2.widget.ViewPager2;
 import com.example.basicactivity.fragments.Server;
 import com.google.android.material.tabs.TabLayout;
 
-import java.io.IOException;
 import java.util.Formatter;
 import java.util.Calendar;
+import java.util.Objects;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -53,88 +51,68 @@ public class MainActivity extends AppCompatActivity {
             }
 
             @Override
-            public void onTabUnselected(TabLayout.Tab tab) {
-            }
+            public void onTabUnselected(TabLayout.Tab tab) {}
 
             @Override
-            public void onTabReselected(TabLayout.Tab tab) {
-            }
+            public void onTabReselected(TabLayout.Tab tab) {}
         });
 
         vp.registerOnPageChangeCallback(new ViewPager2.OnPageChangeCallback() {
             @Override
             public void onPageSelected(int position) {
                 super.onPageSelected(position);
-                tabLayout.getTabAt(position).select();
+                Objects.requireNonNull(tabLayout.getTabAt(position)).select();
             }
         });
 
+        popUpMenu();
+    }
 
-        /*
-Ce code implémente un menu Popup pour l'application Android. Le menu Popup est déclenché par un clic sur un FloatingActionButton et affiche deux options pour se connecter à un serveur et pour quitter l'application.
-*/
-
-// Nouvelle instance du PopupMenu
+    /**
+     * Sets up Popup Menu represented by a FloatingActionButton.
+     * Two options : Connect and Stop.
+     */
+    public void popUpMenu() {
         PopupMenu popup = new PopupMenu(this, findViewById(R.id.menuBurger));
-
-// Ajouter les boutons supplémentaires
         popup.getMenuInflater().inflate(R.menu.popup_menu, popup.getMenu());
 
-// Définir un écouteur de clic pour le FloatingActionButton
-        findViewById(R.id.menuBurger).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-// Afficher le PopupMenu
-                popup.show();
-            }
-        });
+        findViewById(R.id.menuBurger).setOnClickListener(view -> popup.show());
 
-// Définir un écouteur de clic pour les éléments de menu
-        popup.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
-            @Override
-            public boolean onMenuItemClick(MenuItem menuItem) {
-// Vérifier si l'élément sélectionné est "Button 1"
-                if (menuItem.getItemId() == R.id.btn_conncect) {
-// Afficher le message de print
-                    System.out.println("Connect button pushed at " + printHeure());
-                    // Lancer le client pour se connecter au serveur
-                    MyClient.launchClient();
+        popup.setOnMenuItemClickListener(menuItem -> {
+            if (menuItem.getItemId() == R.id.btn_conncect) { // Button 1
+                System.out.println("Connect button pushed at " + printTime());
 
-                    // Attendre 100 millisecondes pour laisser le temps à la connexion de s'établir
-                    try {
-                        Thread.sleep(100);
-                    } catch (InterruptedException e) {
-                        e.printStackTrace();
-                    }
+                // Launching client to connect to the server
+                MyClient.launchClient();
 
-                    // Vérifier si la connexion est établie et afficher un message Toast approprié
-                    if(MyClient.getIsConnected())Toast.makeText(MainActivity.this, "Connecté au serveur.", Toast.LENGTH_SHORT).show();
-                    else Toast.makeText(MainActivity.this, "Erreur. Le serveur n'est pas démarré.", Toast.LENGTH_SHORT).show();
-                    return true;
+                try { // Waiting for the connexion to be established
+                    Thread.sleep(100);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
                 }
-                else  if (menuItem.getItemId() == R.id.btn_quit) {
-                    // Afficher le message de print
-                    System.out.println("Stop button pushed at " + printHeure());
 
-                    // Envoyer une chaîne de caractères "stop" au serveur pour arrêter la connexion
-                    MyClient.setStr("stop");
-
-                    // Afficher un message Toast pour indiquer que la connexion est interrompue
-                    Toast.makeText(MainActivity.this, "Deconnexion...", Toast.LENGTH_SHORT).show();
-                    return true;
-                }
-                return false;
+                // Checking if connexion is established and showing the corresponding Toast message
+                if(MyClient.getIsConnected())Toast.makeText(MainActivity.this, "Connected.", Toast.LENGTH_SHORT).show();
+                else Toast.makeText(MainActivity.this, "Error. The server wasn't launched.", Toast.LENGTH_SHORT).show();
+                return true;
             }
+            else  if (menuItem.getItemId() == R.id.btn_quit) {
+                System.out.println("Stop button pushed at " + printTime());
 
+                // Sends signal to stop the server connexion
+                MyClient.setStr("stop");
+
+                // Toast message to indicate disconnection
+                Toast.makeText(MainActivity.this, "Disconnection...", Toast.LENGTH_SHORT).show();
+                return true;
+            }
+            return false;
         });
-
-        /*******************************************************************/
-
     }
 
     /**
      * Set different themes and colors depending on the current Tab.
-     * @param selectedTab
+     * @param selectedTab tab currently selected bu user
      */
     public void setColors(int selectedTab) {
         int black = ContextCompat.getColor(this, R.color.black);
@@ -170,13 +148,15 @@ Ce code implémente un menu Popup pour l'application Android. Le menu Popup est 
         }
     }
 
-    public static String printHeure() {
+    /**
+     * @return current time (hour and minutes)
+     */
+    public static String printTime() {
         Formatter format = new Formatter();
         Calendar gfg_calender = Calendar.getInstance();
         format = new Formatter();
         format.format("%tl:%tM", gfg_calender, gfg_calender);
 
-        // Printing the current hour and minute
         return format.toString();
     }
 
@@ -184,61 +164,5 @@ Ce code implémente un menu Popup pour l'application Android. Le menu Popup est 
     public void onPointerCaptureChanged(boolean hasCapture) {
         super.onPointerCaptureChanged(hasCapture);
     }
-
-    public void onClickVega(View view) throws IOException, InterruptedException {
-        System.out.println("Vega button pushed at " + printHeure());
-
-        TextView tmp = (TextView) findViewById(R.id.logGallery);
-        String res = (String) tmp.getText();
-        tmp.setText(res + "\nVega button pushed at " + printHeure() + "\n\n" + ping.ping("10.3.141.1"));
-    }
-
-    public void onClickDeneb(View view) throws IOException, InterruptedException {
-        System.out.println("Deneb button pushed at " + printHeure());
-        TextView tmp = (TextView) findViewById(R.id.logGallery);
-        String res = (String) tmp.getText();
-        tmp.setText(res + "\nDeneb button pushed at " + printHeure() + "\n\n" + ping.ping("10.3.141.203"));
-    }
-
-    public void onClickAltair(View view) throws IOException, InterruptedException {
-        System.out.println("Altaïr button pushed at " + printHeure());
-        TextView tmp = (TextView) findViewById(R.id.logGallery);
-        String res = (String) tmp.getText();
-        tmp.setText(res + "\nVega button pushed at " + printHeure() + "\n\n" + ping.ping("10.3.141.226"));
-    }
-
-
-    //Ping des rpi pour debug au cas ou
-/*
-    public void onClickVegaConnect(View view) throws Exception {
-        System.out.println("Connect button pushed at " + printHeure());
-
-        MyClient.launchClient();
-        TextView tmp = (TextView) findViewById(R.id.textVLog2);
-        String res = (String) tmp.getText();
-        tmp.setText(res + "\nConnect button pushed at " + printHeure() + "\n");
-
-    }
-
-    public void onClickVegaSend(View view) throws IOException, InterruptedException {
-        System.out.println("Send button pushed at " + printHeure());
-
-
-        TextView tmp = (TextView) findViewById(R.id.textVLog2);
-        String res = (String) tmp.getText();
-        tmp.setText(res + "\nSend button pushed at " + printHeure() + "\n " + MyClient.setStr("Send message blabla"));
-    }
-
-
-    public void onClickVegaStop(View view) throws IOException, InterruptedException {
-        System.out.println("Stop button pushed at " + printHeure());
-
-
-        TextView tmp = (TextView) findViewById(R.id.textVLog2);
-        String res = (String) tmp.getText();
-        tmp.setText(res + "\nStop button pushed at " + printHeure() + "\n " + MyClient.setStr("stop"));
-
-
-    }*/
 
 }
